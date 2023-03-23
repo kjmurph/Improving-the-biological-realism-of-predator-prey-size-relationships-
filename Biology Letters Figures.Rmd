@@ -1,0 +1,985 @@
+---
+title: "Biology Letters Manuscript Figures"
+output: html_notebook
+---
+
+Compiling all the data and code required to produce the figures for manuscript in prep. for Biology Letters.
+
+Results exploring the effects of resolved cephalopod functional groups on predator-prey size relationships and ecosystem structure & function.
+This was achieved by comparing a control model (cephalopods parametrised the same as fish excepth for min & max. sizes) to models where feeding traits (PPMR) were adjusted to represent cephalopod feeding (Feeding Only) and to models where feeding and growth were adjusted to better represent the cephalopod functional groups (Feeding + Growth).
+
+
+```{r}
+library(tidyverse)
+# library(janitor)
+library(plotrix)
+```
+
+```{r}
+png_1 <- readPNG("C:/Users/kjmurphy/OneDrive - University of Tasmania/Thesis Figures/Conceptual Diagram/Fig_1_Panel_A_v1.png")
+
+png_1|>
+  get_colours(1:6)|>
+  plot_colours()
+```
+
+
+Figure 1: Predator-prey size relationships - Emergent trophic allometries and mean prey size panel plot
+
+Create conceptual diagram
+
+
+Figure 2: Ecosystem metrics - Biomass, turnover, stability (1/CV), productibity
+
+
+## Figure XX: Predator-prey size relationships
+
+```{r}
+df_combined <- read.csv("df_Figure_1_Trophic_Allometry_Model_Results.csv")
+
+  # Read in empirical trophic level data
+  df_emp_SIA <- read_csv("df_emp_SIA.csv")
+  # Make copy
+  df_emp_SIA_rel_ <- df_emp_SIA
+  
+  df_emp_SIA_rel <- df_emp_SIA_rel_ %>%
+  mutate(name = recode(name, "Inactive Cephs" = "Low Activity","Active Cephs" ="High Activity"))
+  
+  #####
+  # Rescale empirical RTP for active cephs
+  df_emp_active <- df_emp_SIA_rel %>%
+    filter(name == "High Activity")
+  
+  model_lm_emp_active <- lm(RTP ~ log10(Predator_Size), data = df_emp_active)
+  
+  df_active <- df_combined %>%
+    filter(Func_Group == "High Activity")
+  
+  min_emp_RTP_active <- model_lm_emp_active$coefficients[1] + (model_lm_emp_active$coefficients[2] * log10(min(df_emp_active$Predator_Size)))
+  
+  model_lm_active <- lm(Median_RTP ~ log10(Predator_Size), data = df_active)
+  
+  df_model_min_RTP <- df_active %>%
+    filter(Predator_Size_Class == 111 | Predator_Size_Class == 112) %>%
+    # filter(Predator_Size_Class == 220 | Predator_Size_Class == 221) %>%
+    mutate(avg_min_RTP = mean(Median_RTP))
+  
+  min_mod_RTP_active <- df_model_min_RTP$avg_min_RTP[1]
+  
+  rescale_RTP_active_val <- min_mod_RTP_active - min_emp_RTP_active
+  
+  pos_val_active <- sqrt(rescale_RTP_active_val * rescale_RTP_active_val)
+  
+  
+  #####
+  # Rescale empirical RTP for inactive group
+  df_emp_inactive <- df_emp_SIA_rel %>%
+    filter(name == "Low Activity")
+  
+  df_inactive <- df_combined %>%
+    filter(Func_Group == "Low Activity")
+  
+  
+  model_lm_emp_inactive <- lm(RTP ~ log10(Predator_Size), data = df_emp_inactive)
+  
+  min_emp_RTP_inactive <- model_lm_emp_inactive$coefficients[1] + (model_lm_emp_inactive$coefficients[2] * log10(min(df_emp_inactive$Predator_Size)))
+  
+  
+  df_model_min_RTP_inactive <- df_inactive %>%
+    filter(Predator_Size_Class == 111 | Predator_Size_Class == 112) %>%
+    # filter(Predator_Size_Class == 220 | Predator_Size_Class == 221) %>%
+    mutate(avg_min_RTP = mean(Median_RTP))
+  
+  min_mod_RTP_inactive <- df_model_min_RTP_inactive$avg_min_RTP[1]
+  
+  rescale_RTP_inactive_val <- min_mod_RTP_inactive - min_emp_RTP_inactive
+  
+  pos_val_inactive <- sqrt(rescale_RTP_inactive_val * rescale_RTP_inactive_val)
+  
+  Act_rescale_val <-  pos_val_active
+  
+  Inact_rescale_val <- pos_val_inactive 
+  
+  df_emp_inactive$RTP_rescaled <- df_emp_inactive$RTP + Inact_rescale_val
+  
+  df_emp_active$RTP_rescaled <- df_emp_active$RTP + Act_rescale_val
+  
+  df_zoom <- df_combined %>%
+    filter(Predator == "Low Activity" | Predator ==  "High Activity")
+  
+  df_RTP_plot <- df_combined
+  
+# df_RTP_plot <- read.csv("RTP_plot_F+G_combined_results.csv")
+  
+RTP_plot <-
+  df_RTP_plot %>%
+    mutate(Func_Group = recode(Func_Group, "Low Activity" = "low activity","High Activity" ="high activity",
+                              "Zooplankton" = 'zooplankton', "Fish" = "fish")) %>% 
+    mutate(name = fct_relevel(Func_Group, 'zooplankton','low activity','high activity','fish')) %>%
+    # mutate(name = fct_relevel(Predator, 'Zooplankton','Low Activity','High Activity','Fish')) %>%
+    ggplot(aes(x=Predator_Size, y= Median_RTP, colour=name, fill=name)) +
+    # scale_colour_manual(values = c( "#F8766D", "#00BFC4","#C77CFF", "#7CAE00")) +
+    
+  scale_colour_manual(values = c("#C77CFF" ,  "#00BFC4","#F8766D","#7CAE00")) +
+    scale_fill_manual(values = c("#C77CFF" , "#00BFC4","#F8766D", "#7CAE00")) +
+   
+    geom_line(size=1) +
+  # geom_point(size = .2) +
+    # geom_smooth(method="lm", size=1) +
+    ylim(2, 7.1) +
+    # xlim(-8, 6) +
+   # xlab(expression(paste("Body Mass"~(10^X~g)))) +
+  xlab("predator mass (g)") +
+  labs(col = "functional group")+
+  labs(tag = "(b)", size = 10) +
+  # labs(tag = "A", size = 10) +
+  ylab("relative trophic position") +
+    # geom_smooth(method = "lm", size=1.5, alpha = 0, linetype = "dashed") +
+    #facet_wrap(~Species_Order, scales = "free_x") +
+    geom_point(aes(x=Predator_Size, y= RTP_rescaled, colour=name),data = df_emp_active, size = 0.25, show.legend = F) +
+  # geom_smooth(aes(x=Predator_Size, y= RTP, colour=name),linetype="dashed", method = "lm", data = df_emp_active, size = 1, alpha = 0.1, show.legend = F) +
+    # geom_smooth(aes(x=Predator_Size, y= RTP), data = df_emp_active,  method = "lm", size = 1, alpha = 0.4,linetype = "dashed", colour="black") +
+    # geom_smooth(aes(x=Predator_Size, y= RTP, colour=name), data = df_emp_active,  method = "lm", size = 1.5, alpha = 0.25,linetype = "longdash") +
+    
+    geom_point(aes(x=Predator_Size, y= RTP_rescaled, colour=name),data = df_emp_inactive, size = 0.25, show.legend = F) +
+  # geom_smooth(aes(x=Predator_Size, y= RTP, colour=name),linetype="dashed", method = "lm", data = df_emp_inactive, size = 1, alpha = 0.1, show.legend = F) +
+   geom_ribbon(aes(ymin = Min_RTP, ymax = Max_RTP), linetype= "dashed", alpha = 0.25,size = 0.35, show.legend = F) +
+    # geom_smooth(aes(x=Predator_Size, y= RTP, colour=name), data = df_emp_inactive,  method = "lm", size = 1.5, alpha = 0.25,linetype = "twodash") +
+    # geom_smooth(aes(x=Predator_Size, y= RTP), data = df_emp_inactive,  method = "lm", size = 1, alpha = 0.4,linetype = "dashed", colour="grey52") +
+    scale_x_log10(limits =c(10^-5,10^6)) +
+    # ggtitle(label = "Community-level RTP Fixed-rescaling: Ceph FGs empirical fit (dots and solid lines) vs model output (dashed lines)") +
+    theme_classic() +
+    theme(
+      axis.title = element_text(size=10),
+       # axis.title.x = element_blank(),
+      axis.text.x=element_text(colour="black", size = 8),
+      axis.text=element_text(colour="black", size = 8)) +
+    theme(legend.key.size = unit(1, 'lines'),
+          legend.position=c(0.25,0.8),
+          legend.text = element_text(size=10),
+          # axis.title.x  = element_blank(),
+          legend.title = element_text(size=12))
+  
+
+df_emp_active <- df_emp_active %>% 
+    mutate(name = case_when(
+                            name == 'High Activity' ~ "high activity"))  
+
+df_emp_inactive <- df_emp_inactive %>% 
+    mutate(name = case_when(
+                            name == 'Low Activity' ~ "low activity")) 
+    
+
+df_RTP_plot <- df_RTP_plot %>%
+    mutate(Func_Group = case_when(Func_Group == 'Zooplankton' ~ "zooplankton",
+                            Func_Group == 'Low Activity' ~ "low activity",
+                            Func_Group == 'High Activity' ~ "high activity",
+                            Func_Group == 'Fish' ~ "fish"))
+
+RTP_plot_v2 <-
+  df_RTP_plot %>% 
+    mutate(Func_Group = factor(Func_Group)) %>% 
+    mutate(name = fct_relevel(Func_Group, 'zooplankton','low activity','high activity','fish')) %>%
+    # mutate(name = fct_relevel(Predator, 'Zooplankton','Low Activity','High Activity','Fish')) %>%
+    ggplot(aes(x=Predator_Size, y= Median_RTP, colour=name, fill=name)) +
+    # scale_colour_manual(values = c( "#F8766D", "#00BFC4","#C77CFF", "#7CAE00")) +
+    scale_colour_manual(values = c("#CCCCCC" ,  "#01cbfeff","#FE5455ff","#666333")) +
+    scale_fill_manual(values = c("#CCCCCC" , "#01cbfeff","#FE5455ff", "#666333")) +
+   
+    geom_line(size=1) +
+  # geom_point(size = .2) +
+    # geom_smooth(method="lm", size=1) +
+    ylim(2, 7.1) +
+    # xlim(-8, 6) +
+   # xlab(expression(paste("Body Mass"~(10^X~g)))) +
+  xlab("predator mass (g)") +
+  labs(col = "functional group")+
+  labs(tag = "(b)", size = 14) +
+  # labs(tag = "A", size = 10) +
+  ylab("relative trophic position") +
+    # geom_smooth(method = "lm", size=1.5, alpha = 0, linetype = "dashed") +
+    #facet_wrap(~Species_Order, scales = "free_x") +
+    geom_point(aes(x=Predator_Size, y= RTP_rescaled, colour=name),data = df_emp_active, size = 0.5, show.legend = F) +
+  # geom_smooth(aes(x=Predator_Size, y= RTP, colour=name),linetype="dashed", method = "lm", data = df_emp_active, size = 1, alpha = 0.1, show.legend = F) +
+    # geom_smooth(aes(x=Predator_Size, y= RTP), data = df_emp_active,  method = "lm", size = 1, alpha = 0.4,linetype = "dashed", colour="black") +
+    # geom_smooth(aes(x=Predator_Size, y= RTP, colour=name), data = df_emp_active,  method = "lm", size = 1.5, alpha = 0.25,linetype = "longdash") +
+    
+    geom_point(aes(x=Predator_Size, y= RTP_rescaled, colour=name),data = df_emp_inactive, size = 0.5, show.legend = F) +
+  # geom_smooth(aes(x=Predator_Size, y= RTP, colour=name),linetype="dashed", method = "lm", data = df_emp_inactive, size = 1, alpha = 0.1, show.legend = F) +
+   geom_ribbon(aes(ymin = Min_RTP, ymax = Max_RTP), linetype= "dashed", alpha = 0.25,size = 0.35, show.legend = F) +
+    # geom_smooth(aes(x=Predator_Size, y= RTP, colour=name), data = df_emp_inactive,  method = "lm", size = 1.5, alpha = 0.25,linetype = "twodash") +
+    # geom_smooth(aes(x=Predator_Size, y= RTP), data = df_emp_inactive,  method = "lm", size = 1, alpha = 0.4,linetype = "dashed", colour="grey52") +
+    scale_x_log10(limits =c(10^-5,10^6), breaks = c(1e-3, 1e+0,1e+3,1e+6), labels = c("1e-3", "1e+0","1e+3","1e+6")) +
+  
+    # scale_x_log10() +
+    # scale_y_log10() +
+    # ggtitle(label = "Community-level RTP Fixed-rescaling: Ceph FGs empirical fit (dots and solid lines) vs model output (dashed lines)") +
+    theme_classic() +
+    theme(
+      plot.tag = element_text(face='italic'),
+      axis.title = element_text(size=14),
+       # axis.title.x = element_blank(),
+      # axis.text.x=element_text(colour="black", size = 12),
+      axis.text=element_text(colour="black", size = 13)) +
+    theme(legend.key.size = unit(1, 'lines'),
+          legend.position=c(0.2,0.8),
+          legend.text = element_text(size=14),
+          # axis.title.x  = element_blank(),
+          legend.title = element_text(size=14))
+```
+
+
+
+```{r}
+Fig_1_pA <-
+  df_RTP_plot %>%
+    mutate(Func_Group = case_when(Func_Group == 'Zooplankton' ~ "zooplankton",
+                            Func_Group == 'Low Activity' ~ "low activity",
+                            Func_Group == 'High Activity' ~ "high activity",
+                            Func_Group == 'Fish' ~ "fish")) %>% 
+    mutate(name = fct_relevel(Func_Group, 'zooplankton','low activity','high activity','fish')) %>%
+    # mutate(name = fct_relevel(Predator, 'Zooplankton','Low Activity','High Activity','Fish')) %>%
+    ggplot(aes(x=Predator_Size, y= Median_RTP, colour=name, fill=name)) +
+    # scale_colour_manual(values = c( "#F8766D", "#00BFC4","#C77CFF", "#7CAE00")) +
+    
+   scale_colour_manual(values = c("#CCCCCC" ,  "#01cbfeff","#FE5455ff","#666333")) +
+  scale_fill_manual(values = c("#CCCCCC" ,  "#01cbfeff","#FE5455ff","#666333")) +
+  # scale_colour_manual(values = c("#C77CFF" ,  "#00BFC4","#F8766D","#7CAE00")) +
+  #   scale_fill_manual(values = c("#C77CFF" , "#00BFC4","#F8766D", "#7CAE00")) +
+   
+    # geom_line(size=.5) +
+  # geom_point(size = .2) +
+    # geom_smooth(method="lm", size=1) +
+    ylim(2, 7.1) +
+    # xlim(-8, 6) +
+   # xlab(expression(paste("Body Mass"~(10^X~g)))) +
+  xlab("predator mass (g)") +
+  labs(col = "functional group")+
+  labs(tag = "(a)", size = 14) +
+  # labs(tag = "A", size = 10) +
+   # ylab(expression(trophic~position~symbol('\256'))) +
+  ylab("trophic position") +
+    # geom_smooth(method = "lm", size=1.5, alpha = 0, linetype = "dashed") +
+    #facet_wrap(~Species_Order, scales = "free_x") +
+    # geom_point(aes(x=Predator_Size, y= RTP_rescaled, colour=name),data = df_emp_active, size = 0.25, show.legend = F) +
+  # geom_smooth(aes(x=Predator_Size, y= RTP, colour=name),linetype="dashed", method = "lm", data = df_emp_active, size = 1, alpha = 0.1, show.legend = F) +
+    # geom_smooth(aes(x=Predator_Size, y= RTP), data = df_emp_active,  method = "lm", size = 1, alpha = 0.4,linetype = "dashed", colour="black") +
+    # geom_smooth(aes(x=Predator_Size, y= RTP, colour=name), data = df_emp_active,  method = "lm", size = 1.5, alpha = 0.25,linetype = "longdash") +
+    
+    # geom_point(aes(x=Predator_Size, y= RTP_rescaled, colour=name),data = df_emp_inactive, size = 0.25, show.legend = F) +
+  # geom_smooth(aes(x=Predator_Size, y= RTP, colour=name),linetype="dashed", method = "lm", data = df_emp_inactive, size = 1, alpha = 0.1, show.legend = F) +
+   # geom_ribbon(aes(ymin = Min_RTP, ymax = Max_RTP), linetype= "dashed", alpha = 0.25,size = 0.35, show.legend = F) +
+    # geom_smooth(aes(x=Predator_Size, y= RTP, colour=name), data = df_emp_inactive,  method = "lm", size = 1.5, alpha = 0.25,linetype = "twodash") +
+    # geom_smooth(aes(x=Predator_Size, y= RTP), data = df_emp_inactive,  method = "lm", size = 1, alpha = 0.4,linetype = "dashed", colour="grey52") +
+    # scale_x_log10(limits =c(10^-5,10^6)) +
+  scale_x_continuous(limits =c(-10,120), breaks = c(1,100)) +
+    # ggtitle(label = "Community-level RTP Fixed-rescaling: Ceph FGs empirical fit (dots and solid lines) vs model output (dashed lines)") +
+    theme_classic() +
+  
+    theme(
+      plot.tag = element_text(face="italic"),
+      # axis.ticks.x = element_blank(),
+      axis.title = element_text(size=14),
+       # axis.text.x = element_blank(),
+      axis.text.y = element_blank(),
+      axis.ticks.y = element_blank(),
+      # axis.text.x=element_text(colour="black", size = 8),
+      axis.text=element_text(colour="black", size = 13)) +
+    theme(legend.position="none") +
+  annotate("text", label = "activity level", x= 18.5, y = 6.85, size = 5) +
+  annotate("text", label = "low", x= 4.4, y = 6.2, colour = "#01cbfeff", size = 5) +
+  annotate("text", label = "high", x= 5.5, y = 6.5, colour = "#FE5455ff", size = 5)
+
+
+library(png)
+library(grid)
+
+
+
+png_1 <- readPNG("C:/Users/kjmurphy/OneDrive - University of Tasmania/Thesis Figures/Conceptual Diagram/Fig_1_Panel_A_v1.png")
+g <- rasterGrob(png_1, interpolate = TRUE)
+
+Fig_1_pA <- Fig_1_pA + annotation_custom(g, xmin=-Inf, xmax=Inf, ymin=-Inf, ymax=Inf)
+
+```
+
+```{r}
+feeding_kernel_beta <- function(Species, w_min, w_max, beta, sigma, df_prey_w){
+  
+  df_prey_w <- df_prey_w$df_w
+  Species <- Species
+  w_min <- w_min
+  w_max <- w_max
+  beta  <- beta
+  sigma <- sigma
+      
+    # Feeding level across prey sizes at minimum predator size  
+    fk_value <- exp(-0.5*(log((beta*df_prey_w)/
+                                            w_min)/sigma)^2)/
+        sqrt(2*pi*sigma^2)
+    
+    df_min <- as.data.frame(fk_value)
+    df_min$w_prey <- df_prey_w
+    df_min$Predator_Size <- "1 g"
+    df_min$Species <- Species
+    
+    # Feeding level across prey sizes at maximum predator size 
+    fk_value <- exp(-0.5*(log((beta*df_prey_w)/
+                                            w_max)/sigma)^2)/
+        sqrt(2*pi*sigma^2)
+    
+    df_max <- as.data.frame(fk_value)
+    df_max$w_prey <- df_prey_w
+    df_max$Predator_Size <- "100 g"
+    df_max$Species <- Species
+    
+df_plot <- do.call("rbind", list(df_min, df_max))
+df_plot$Predator_Size <- as.factor(df_plot$Predator_Size)
+df_plot$Species <- as.factor(df_plot$Species)
+df_plot$Type <- "Beta"
+df_plot$Type <- as.factor(df_plot$Type)
+
+write.csv(df_plot, paste(Species,"fk_df.csv"))
+
+}
+```
+
+
+```{r}
+feeding_kernel_mode <- function(Species, w_min, w_max, m, sigma, df_prey_w){
+  
+  df_prey_w <- df_prey_w$df_w
+  Species <- Species
+  w_min <- w_min # Minimum size of predator species/func group
+  w_max <- w_max # Maximum size of predator species/func group
+  m     <- m     # Feeding mode value
+  sigma <- sigma # Width of feeding kernel
+  
+      D.z_min <- 2*(3*w_min*1e12/(4*pi))^(1/3) # convert body mass g to ESD (um)
+      betas_min =  (exp(0.02*log(D.z_min)^2 - m + 1.832))^3 # Calculates PPMR for minimum size predator of species[i]
+      
+      D.z_max <- 2*(3*w_max*1e12/(4*pi))^(1/3) # convert body mass g to ESD (um)
+      betas_max =  (exp(0.02*log(D.z_max)^2 - m + 1.832))^3 # Calculates PPMR for maximum size predator of species[i]
+      
+      
+    fk_value <- exp(-0.5*(log((betas_min*df_prey_w)/
+                                            w_min)/sigma)^2)/
+        sqrt(2*pi*sigma^2)  # Calculates the min size feeding kernel (feeding level of  min size predator at every size class of prey)
+    
+    df_min <- as.data.frame(fk_value)
+    df_min$w_prey <- df_prey_w
+    df_min$Predator_Size <- "1 g"
+    df_min$Species <- Species
+    
+    
+    fk_value <- exp(-0.5*(log((betas_max*df_prey_w)/
+                                            w_max)/sigma)^2)/
+        sqrt(2*pi*sigma^2)  # Calculates the max size feeding kernel (feeding level of  max size predator at every size class of prey)
+    
+    df_max <- as.data.frame(fk_value)
+    df_max$w_prey <- df_prey_w
+    df_max$Predator_Size <- "100 g"
+    df_max$Species <- Species
+    
+df_plot <- do.call("rbind", list(df_min, df_max))
+df_plot$Predator_Size <- as.factor(df_plot$Predator_Size)
+df_plot$Species <- as.factor(df_plot$Species)
+df_plot$Type <- "Mode"
+df_plot$Type <- as.factor(df_plot$Type)
+
+write.csv(df_plot, paste(Species,"fk_df.csv"))
+
+}
+
+```
+
+
+```{r}
+
+df_prey_w <- read.csv("df_weight.csv")
+
+feeding_kernel_mode("low activity", 10^0, 10^2, 0, 2, df_prey_w)
+feeding_kernel_beta("high activity", 10^0, 10^2, 25, 2, df_prey_w)
+
+```
+
+
+```{r}
+
+df_fk_la <- read.csv("Low Activity fk_df.csv")
+df_fk_ha <- read.csv("high activity fk_df.csv")
+
+df_fk_plot <- rbind(df_fk_la, df_fk_ha)
+
+
+Fig_1_pC <-
+df_fk_plot %>%
+  mutate(Predator_Size = factor(Predator_Size)) %>% 
+  ggplot(aes(x=w_prey, y= fk_value, colour = Species, linetype = Predator_Size)) +
+  labs(col = "functional group")+
+  labs(linetype = "predator mass") +
+  xlab("prey mass (g)") +
+  labs(tag = "(c)", size = 14) +
+  # labs(tag = "A", size = 10) +
+  ylab("predator diet proportion") +
+  geom_line(size = 1) +
+    # geom_smooth(method = "lm", size=1.5, alpha = 0, linetype = "dashed") +
+    #facet_wrap(~Species_Order, scales = "free_x") +
+    # geom_point(aes(x=Predator_Size, y= RTP_rescaled, colour=name),data = df_emp_active, size = 0.25, show.legend = F) +
+  # geom_smooth(aes(x=Predator_Size, y= RTP, colour=name),linetype="dashed", method = "lm", data = df_emp_active, size = 1, alpha = 0.1, show.legend = F) +
+    # geom_smooth(aes(x=Predator_Size, y= RTP), data = df_emp_active,  method = "lm", size = 1, alpha = 0.4,linetype = "dashed", colour="black") +
+    # geom_smooth(aes(x=Predator_Size, y= RTP, colour=name), data = df_emp_active,  method = "lm", size = 1.5, alpha = 0.25,linetype = "longdash") +
+    
+    # geom_point(aes(x=Predator_Size, y= RTP_rescaled, colour=name),data = df_emp_inactive, size = 0.25, show.legend = F) +
+  # geom_smooth(aes(x=Predator_Size, y= RTP, colour=name),linetype="dashed", method = "lm", data = df_emp_inactive, size = 1, alpha = 0.1, show.legend = F) +
+   # geom_ribbon(aes(ymin = Min_RTP, ymax = Max_RTP), linetype= "dashed", alpha = 0.25,size = 0.35, show.legend = F) +
+    # geom_smooth(aes(x=Predator_Size, y= RTP, colour=name), data = df_emp_inactive,  method = "lm", size = 1.5, alpha = 0.25,linetype = "twodash") +
+    # geom_smooth(aes(x=Predator_Size, y= RTP), data = df_emp_inactive,  method = "lm", size = 1, alpha = 0.4,linetype = "dashed", colour="grey52") +
+    scale_colour_manual(values = c("#FE5455ff","#01cbfeff"), guide = "none") +
+    # scale_colour_discrete(guide = "none") + 
+    scale_y_continuous(limits =c(0,0.5), breaks = c(0,0.25, 0.5)) +
+    scale_x_log10(limits =c(2e-6,100), breaks = c(2e-5, 3e-4,0.04,4), labels = c("2e-5", "3e-4","0.04","4")) +
+    geom_segment(aes(x = 0.04, y = 0.21, xend = 4, yend = 0.21),
+               arrow = arrow(length = unit(0.2, "cm"), ends = "both"), colour="black", size = 1, show.legend = F) +
+    geom_segment(aes(x = 2e-5, y = 0.21, xend = 3e-4, yend = 0.21),
+               arrow = arrow(length = unit(0.2, "cm"), ends = "both"), colour="black", size = 1, show.legend = F) +
+    # ggtitle(label = "Community-level RTP Fixed-rescaling: Ceph FGs empirical fit (dots and solid lines) vs model output (dashed lines)") +
+    theme_classic() +
+    theme(
+      plot.tag = element_text(face = 'italic'),
+      # axis.ticks.x = element_blank(),
+      axis.title = element_text(size=14),
+       axis.text.x = element_text(colour="black", size = 13),
+      axis.text.y = element_text(colour="black", size = 13),
+      # axis.ticks.y = element_blank(),
+      # axis.text.x=element_text(colour="black", size = 8),
+      # axis.text=element_text(colour="black", size = 14),
+      legend.key.size = unit(1, 'lines'),
+          legend.position=c(0.275,0.8),
+          legend.text = element_text(size=14),
+          # axis.title.x  = element_blank(),
+          legend.title = element_text(size=14))
+    # theme(legend.position="none") +
+  # annotate("text", label = "predator mass", x= 2e-5, y = 0.9) +
+  # annotate("text", label = "1 g", x= 3e-4, y = 0.85) +
+  # annotate("text", label = "100 g", x= 3e-4, y = 0.8)
+
+# png_2 <- readPNG("C:/Users/kjmurphy/OneDrive - University of Tasmania/Thesis Figures/Conceptual Diagram/Fig_1_Panel_C_v1.png")
+# g2 <- rasterGrob(png_2, interpolate = TRUE)
+# 
+# Fig_1_pC <-  Fig_1_pC + annotation_custom(g2, xmin=-Inf, xmax=Inf, ymin=-Inf, ymax=Inf)
+```
+
+
+
+```{r}
+
+# df_ref <- tibble(
+#   Predator_Size = c(min(df_plot_PPMR_Full$Predator_Size), max(df_plot_PPMR_Full$Predator_Size))
+# )
+# df_ref$Expected_prey_size = 0.005882353*df_ref$Predator_Size
+
+df_PPMR_plot <- read.csv("PPMR_plot_F+G_combined_results.csv")
+
+PPMR_plot <- df_PPMR_plot %>% 
+  mutate(name = case_when(name == 'Zooplankton' ~ "zooplankton",
+                            name == 'Low Activity' ~ "low activity",
+                            name == 'High Activity' ~ "high activity",
+                            name == 'Fish' ~ "fish")) %>% 
+    mutate(name = fct_relevel(name, 'zooplankton','low activity','high activity','fish')) %>%
+  # mutate(name = fct_relevel(name, 'Zooplankton','Low Activity','High Activity','Fish')) %>%
+  ggplot(aes(x = Predator_Size, y = Median_N, color = name)) +
+  # geom_line(data = df_ref, aes(x = Predator_Size, y = Expected_Prey_Size_PPMR1),
+  #             linetype = "solid", size = 0.75) +
+  #   geom_line(data = df_ref, aes(x = Predator_Size, y = Expected_Prey_Size_PPMR10),
+  #             linetype = "longdash", size = 0.75) +
+  #   geom_line(data = df_ref, aes(x = Predator_Size, y = Expected_Prey_Size_PPMR100),
+  #             linetype = "dashed", size = 0.75) +
+  #   geom_line(data = df_ref, aes(x = Predator_Size, y = Expected_Prey_Size_PPMR1000),
+  #             linetype = "twodash", size = 0.75) +
+  #   geom_line(data = df_ref, aes(x = Predator_Size, y = Expected_Prey_Size_PPMR10000),
+  #             linetype = "dotdash", size = 0.75) +
+  #   geom_line(data = df_ref, aes(x = Predator_Size, y = Expected_Prey_Size_PPMR100000),
+  #             linetype = "dotted", size = 0.75) +
+    geom_line(size = 1, show.legend = F) +
+     labs(col = "functional group")+
+    # geom_segment(aes(x = min(Predator_Size), xend = max(Predator_Size), y = (min(Predator_Size)*0.005882353), yend = (max(Predator_Size)*0.005882353)), linetype = "dashed", colour = "black", size=0.5) +
+    geom_segment(aes(x = min(Predator_Size), xend = max(Predator_Size), y = (min(Predator_Size)* 0.01010101), yend = (max(Predator_Size)* 0.01010101)), linetype = "dashed", colour = "dark grey", size=0.5) +
+    geom_segment(aes(x = min(Predator_Size), xend = max(Predator_Size), y = (min(Predator_Size)*  0.0009775171), yend = (max(Predator_Size)*  0.0009775171)), linetype = "dashed", colour = "black", size=0.5) + ## Barnes dataset realised PPMR value for ectotherm vertebrates
+    # geom_segment(aes(x = min(Predator_Size), xend = max(Predator_Size), y = (min(Predator_Size)*.01), yend = (max(Predator_Size)*.01)), linetype = "longdash", colour = "black", size=0.5) +
+    # scale_colour_manual(values = c( "#F8766D", "#00BFC4","#C77CFF", "#7CAE00")) +
+     scale_colour_manual(values = c("#CCCCCC" ,  "#01cbfeff","#FE5455ff","#666333")) +
+   scale_fill_manual(values = c("#CCCCCC" ,  "#01cbfeff","#FE5455ff","#666333")) +
+    # scale_colour_manual(values = c("#C77CFF" ,  "#00BFC4","#F8766D","#7CAE00")) +
+    # scale_fill_manual(values = c("#C77CFF" ,  "#00BFC4","#F8766D","#7CAE00")) +
+    geom_ribbon(aes(ymin = Min_N, ymax = Max_N, fill = name), alpha = 0.25, linetype = "dashed",show.legend = F, size = 0.35) +
+    scale_x_log10() +
+    scale_y_log10() +
+    labs(tag = "(d)", size = 10) +
+    # facet_wrap( ~ Predator) +
+    labs(x = "predator mass (g) ", y = "mean prey mass (g)") +
+    # annotate(angle = 48, "text", label= "PPMR = 170", x = 10^-10.2, y = 10^-11.5, size = 3.5) +
+    annotate(angle = 33, "text", label= "PPMR = 99", x = 10^-10.2, y = 10^-11.7, size = 4, colour = "dark gray",fontface = 2) + # If using Barnes realised PPMR for cephalopods of 99
+    annotate(angle = 33, "text", label= "PPMR = 1023", x = 10^-7.5, y = 10^-10, size = 4, fontface = 2) + # If using Barnes realised PPMR for cephalopods of 1023 ectotherm vertebrates
+    coord_cartesian(clip = 'off') +  # This keeps the labels from disappearing
+    theme_classic() + 
+    theme(legend.key.size = unit(1, 'lines'),
+          legend.position=c(0.25,0.8),
+          legend.background = element_blank(),
+          axis.title = element_text(size=11),
+           # axis.title.x = element_blank(),
+          plot.tag = element_text(face = 'italic'),
+      axis.text.x=element_text(colour="black", size = 11),
+      axis.text.y=element_text(colour="black", size = 11),
+      legend.title=element_text(size=11), 
+      legend.text=element_text(size=11))
+
+
+PPMR_plot_v2 <-
+  df_PPMR_plot %>% 
+  mutate(name = case_when(name == 'Zooplankton' ~ "zooplankton",
+                            name == 'Low Activity' ~ "low activity",
+                            name == 'High Activity' ~ "high activity",
+                            name == 'Fish' ~ "fish")) %>% 
+    mutate(name = fct_relevel(name, 'zooplankton','low activity','high activity','fish')) %>%
+  ggplot(aes(x = Predator_Size, y = Median_N, color = name)) +
+  # geom_line(data = df_ref, aes(x = Predator_Size, y = Expected_Prey_Size_PPMR1),
+  #             linetype = "solid", size = 0.75) +
+  #   geom_line(data = df_ref, aes(x = Predator_Size, y = Expected_Prey_Size_PPMR10),
+  #             linetype = "longdash", size = 0.75) +
+  #   geom_line(data = df_ref, aes(x = Predator_Size, y = Expected_Prey_Size_PPMR100),
+  #             linetype = "dashed", size = 0.75) +
+  #   geom_line(data = df_ref, aes(x = Predator_Size, y = Expected_Prey_Size_PPMR1000),
+  #             linetype = "twodash", size = 0.75) +
+  #   geom_line(data = df_ref, aes(x = Predator_Size, y = Expected_Prey_Size_PPMR10000),
+  #             linetype = "dotdash", size = 0.75) +
+  #   geom_line(data = df_ref, aes(x = Predator_Size, y = Expected_Prey_Size_PPMR100000),
+  #             linetype = "dotted", size = 0.75) +
+    geom_line(size = 1, show.legend = F) +
+     labs(col = "functional group")+
+  
+    # geom_segment(aes(x = min(Predator_Size), xend = max(Predator_Size), y = (min(Predator_Size)* 0.01010101), yend = (max(Predator_Size)* 0.01010101)), linetype = "dotted", colour = "#FE5455ff", size=1) +
+    # geom_segment(aes(x = min(Predator_Size), xend = max(Predator_Size), y = (min(Predator_Size)*  0.0009775171), yend = (max(Predator_Size)*  0.0009775171)), linetype = "dotted", colour = "#666333", size=1) + ## Barnes dataset realised PPMR value for ectotherm vertebrates
+  
+  geom_segment(aes(x = 10e-5, xend = max(Predator_Size), y = (10e-5* 0.01010101), yend = 10e5 * 0.01010101), linetype = "dotted", colour = "#FE5455ff", size=1) +
+    geom_segment(aes(x = 10e-5, xend = max(Predator_Size), y = (10e-5*  0.0009775171), yend = (max(Predator_Size)*  0.0009775171)), linetype = "dotted", colour = "#666333", size=1) + ## Barnes dataset realised PPMR value for ectotherm vertebrates
+  
+    # geom_segment(aes(x = min(Predator_Size), xend = max(Predator_Size), y = (min(Predator_Size)*.01), yend = (max(Predator_Size)*.01)), linetype = "longdash", colour = "black", size=0.5) +
+    # scale_colour_manual(values = c( "#F8766D", "#00BFC4","#C77CFF", "#7CAE00")) +
+    scale_colour_manual(values = c("#CCCCCC" ,  "#01cbfeff","#FE5455ff","#666333")) +
+    scale_fill_manual(values = c("#CCCCCC" ,  "#01cbfeff","#FE5455ff","#666333")) +
+    geom_ribbon(aes(ymin = Min_N, ymax = Max_N, fill = name), alpha = 0.25, linetype = "dashed",show.legend = F, size = 0.35) +
+    # scale_x_log10() +
+    scale_x_log10(limits =c(10^-5,10^6), breaks = c(1e-3, 1e+0,1e+3,1e+6), labels = c("1e-3", "1e+0","1e+3","1e+6")) +
+    scale_y_log10(limits =c(10^-9,10^4.5)) +
+    labs(tag = "(d)", size = 14) +
+    # facet_wrap( ~ Predator) +
+    labs(x = "predator mass (g) ", y = "mean prey mass (g)") +
+    # annotate(angle = 48, "text", label= "PPMR = 170", x = 10^-10.2, y = 10^-11.5, size = 3.5) +
+    annotate(angle = 37, "text", label= "PPMR = 99", x = 10e-5, y = 10^-5.3, size = 4.5, colour = "#FE5455ff",fontface = 2) + # If using Barnes realised PPMR for cephalopods of 99
+  # annotate(angle = 33, "text", label= "PPMR = 99", x = 10^-10.2, y = 10^-11.7, size = 3.75, colour = "#FE5455ff",fontface = 2) + # If using Barnes realised PPMR for cephalopods of 99
+    annotate(angle = 35, "text", label= "PPMR = 1023", x = 10e-5, y = 10^-7.5, size = 4.5,colour = "#666333",fontface = 2) + # If using Barnes realised PPMR for cephalopods of 1023 ectotherm vertebrates
+    coord_cartesian(clip = 'off') +  # This keeps the labels from disappearing
+    theme_classic() + 
+    theme(legend.key.size = unit(1, 'lines'),
+          legend.position=c(0.25,0.8),
+          legend.background = element_blank(),
+          axis.title = element_text(size=14, colour = "black"),
+          axis.text = element_text(size=13, colour = "black"),
+           # axis.title.x = element_blank(),
+          plot.tag = element_text(face = 'italic'),
+      # axis.text.x=element_text(colour="black", size = 12),
+      # axis.text.y=element_text(colour="black", size = 12),
+      legend.title=element_text(size=14), 
+      legend.text=element_text(size=14))
+```
+
+
+
+```{r}
+library(patchwork)
+Fig_1_pA + RTP_plot_v2 + Fig_1_pC + PPMR_plot_v2 +  plot_layout(widths = c(1,1.4))
+
+# ggsave("Figure_1_v2.png",
+#        units="mm",
+#        dpi = 600,
+#        width = 240,
+#        height =240)
+
+ggsave("Figure_1_v3.png",
+       units="mm",
+       dpi = 600,
+       width = 240,
+       height =240)
+```
+
+## Figure XX: Ecosystem Metrics
+
+Read in raw data with Control, Feeding-Only, and Feeding+Growth model sets
+
+```{r}
+df_fig_XX_raw <- read.csv("Community_Metrics_Figure_XX.csv")
+
+glimpse(df_fig_XX_raw)
+```
+
+Inspect dataframe
+
+```{r}
+df_fig_XX_tidy <- df_fig_XX_raw %>% 
+  mutate(Model = factor(Model),
+         Group = factor(Group),
+         Level = factor(Level),
+         Variant = factor(Variant))
+
+glimpse(df_fig_XX_tidy)
+```
+Calculate the difference between metrics across the model sets to provide a summary value for effect size
+
+```{r}
+df_effect_size <- df_fig_XX_tidy %>% 
+  filter(Level == "Community") %>% 
+  filter(Metric == "Total Biomass (g m3)"|Metric == "Mean P:B"|Metric == "1/Community_CV"|Metric == "Production") %>% 
+  group_by(Model, Metric) %>% 
+  summarise(mean_value = mean(Value),
+            se_value = std.error(Value))
+  
+df_effect_size
+# write.csv(df_effect_size, "community_metric_effect_size.csv")
+```
+
+Boxplot for desired ecosystem metrics
+```{r}
+df_fig_XX_tidy %>% 
+  filter(Level == "Community") %>% 
+  filter(Metric == "Total Biomass (g m3)"|Metric == "Mean P:B"|Metric == "1/Community_CV"|Metric == "Production") %>% 
+  ggplot(aes(x=Model,
+             y = Value)) +
+  geom_violin() +
+  facet_wrap(~Metric, scales = "free_y")
+  scale_y_log10()
+  
+```
+
+
+```{r}
+phyto_min <- -14.5
+phyto_max <- -7.9
+a <- -1.3
+b <- -0.88
+
+df_plot_ <- read.csv("Feeding+Growth_Abundance_SizeSpec_Figure_XX.csv")
+
+df_control <- read.csv("df_comb_SizeSpec_Plot_Control_Model.csv")
+
+df_plot_control <- df_control %>%
+   mutate(Func_Group = recode(Predator, Zoo='Zooplankton',  "Inactive Cephs" = "Low Activity","Active Cephs" ="High Activity", Fish="Fish"))
+
+df_plot_control_inactive <- df_plot_control %>%
+  filter(Func_Group == "Low Activity") %>%
+   filter(log10(Median_N) > -11)
+
+df_plot_control_active <- df_plot_control %>%
+  filter(!Func_Group == "Low Activity") %>%
+   filter(log10(Median_N) > -11)
+
+
+df_plot_active_cutoff <- df_plot_ %>%
+  filter(Func_Group == "High Activity") %>%
+   filter(log10(Median_N) > -11)
+
+
+df_plot_inactive_cutoff <- df_plot_ %>%
+  filter(Func_Group == "Low Activity") %>%
+   filter(log10(Median_N) > -11)
+
+
+df_plot_zoo_cutoff <- df_plot_ %>%
+  filter(Func_Group == "Zooplankton") %>%
+   filter(log10(Median_N) > -11)
+
+df_plot_fish_cutoff <- df_plot_%>%
+  filter(Func_Group == "Fish") %>%
+   filter(log10(Median_N) > -11)
+
+
+df_path1 <- df_plot_control_inactive %>% 
+  mutate(Func_Group = case_when(Func_Group == 'Zooplankton' ~ "zooplankton",
+                                                            Func_Group == 'Low Activity' ~ "low activity",
+                                                            Func_Group == 'High Activity' ~ "high activity",
+                                                            Func_Group == 'Fish' ~ "fish")) %>% 
+  mutate(Func_Group = fct_relevel(Func_Group, 'zooplankton','low activity','high activity','fish'))
+
+df_path2 <- df_plot_control_active %>% 
+  mutate(Func_Group = case_when(Func_Group == 'Zooplankton' ~ "zooplankton",
+                                                            Func_Group == 'Low Activity' ~ "low activity",
+                                                            Func_Group == 'High Activity' ~ "high activity",
+                                                            Func_Group == 'Fish' ~ "fish")) %>% 
+  mutate(Func_Group = fct_relevel(Func_Group, 'zooplankton','low activity','high activity','fish'))
+
+
+pA <- df_plot_ %>%
+  filter(log10(Median_N) > -11) %>%
+  mutate(Func_Group = case_when(Func_Group == 'Zooplankton' ~ "zooplankton",
+                            Func_Group == 'Low Activity' ~ "low activity",
+                            Func_Group == 'High Activity' ~ "high activity",
+                            Func_Group == 'Fish' ~ "fish")) %>% 
+    mutate(Func_Group = fct_relevel(Func_Group, 'zooplankton','low activity','high activity','fish')) %>%
+  # mutate(Func_Group = fct_relevel(Func_Group,'Zooplankton', "Low Activity", "High Activity", "Fish")) %>%
+  # mutate(Functional_Group = Species_Order) %>%
+ggplot(aes(x =log10(Predator_Size), y = log10(Median_N), colour = Func_Group)) + 
+  labs(col = "functional group")+
+    geom_path(size=1.25) +
+    # geom_path(data = df_plot_FO_, aes(), linetype = "dotdash", size=1) +
+    geom_path(data = df_path1, aes(), linetype="dotted", size=1.25) +
+  geom_path(data = df_path2, aes(), linetype="dashed", size=1.25) +
+    xlab(expression(paste("body mass"~(10^X~g)))) +
+     ylab(expression(abundance~(10^X~"m"^-3)))+
+  scale_colour_manual(values = c("#CCCCCC" ,  "#01cbfeff","#FE5455ff","#666333")) +
+    scale_fill_manual(values = c("#CCCCCC" ,  "#01cbfeff","#FE5455ff","#666333")) +
+  # c("#CCCCCC" ,  "#01cbfeff","#FE5455ff","#666333"))
+  labs(tag = "(a)", size = 12) +
+  # labs(subtitle = "Feeding + Growth Model Abundance Size Spectra") +
+  geom_ribbon(aes(ymin = log10(Min_N), ymax = log10(Max_N), fill = Func_Group), colour=NA, alpha = 0.25, linetype = "dashed", show.legend = F, size = 0.25) +
+  xlim(-15,6) +
+    #geom_point(aes(x=log(df_mode_norm_biomass$size_class), y=log(df_mode_norm_biomass$normalised_biomass), colour = df_mode_norm_biomass$Feeding_mode)) +
+    #stat_smooth(method = "lm", col = "black", linetype = "longdash", alpha = F, size=0.5) +
+    geom_segment(aes(x = phyto_min , xend = phyto_max, y = (a) + (b*phyto_min), yend = a + (b*phyto_max)), colour="green",linetype="dotted", size = 1.25) +
+    # labs(title = paste("Normalised Biomass Size Spectra: ", scenario,
+    #                    "\nFixed Phytoplankton Resource Size Spectrum (Green Dash)", "Intercept =", projection$environ$a,
+    #                    " Slope =", projection$environ$b,
+    #                    "\nLinear slope of dynamic community =",round(fit_v1$coefficients[2], 2))) +
+    theme_classic() +
+    # scale_colour_manual(name = 'Functional Group',
+    #                     values =c("#C77CFF", "#F8766D", "#00BFC4","#7CAE00"), labels = c('Zooplankton','Active','Inactive', 'Fish')) +
+    theme(plot.title = element_text(size = 12)) +
+    theme(
+      plot.tag = element_text(face="italic"),
+      axis.title = element_text(size=12),
+      # axis.title.x = element_blank(),
+      # axis.text.x=element_text(colour="black", size = 10),
+      axis.text=element_text(colour="black", size = 12)) +
+    theme(legend.key.size = unit(1, 'lines'),
+          legend.position=c(0.15,0.3),
+          legend.text = element_text(colour="black", size = 12),
+          legend.title  = element_text(colour="black", size = 12))
+
+png_x <- readPNG("Fig 2 Legend addition.png")
+g_x <- rasterGrob(png_x, interpolate = TRUE)
+
+pA <- pA + annotation_custom(g_x, xmin=-15.7, xmax=-11, ymin=0, ymax=4.8)
+```
+
+
+```{r}
+library(patchwork)
+library(ggforce)
+
+Model_Sets <- c("control", "F + G")
+
+df_Eco_Plot <- df_fig_XX_tidy %>%
+  filter(Level == "Func Group") %>% 
+  mutate(Func_Group=recode(Group, Zoo='zooplankton',  Inactive= "low activity", Active ="high activity", Fish="fish"))
+
+df_Violin_plot <- df_fig_XX_tidy %>% 
+  filter(Level == "Community")
+
+```
+
+
+```{r}
+
+pB <- df_Violin_plot %>%
+  # mutate(Fishing_Level = fct_relevel(Fishing, 'None', 'Low','High')) %>%
+  mutate(Eco_Metric = fct_relevel(Metric, 'Total Biomass (g m3)','Fish:Community Biomass','FCL','Mean P:B','Biomass weighted PPMR', "Mean PPMR", "Mean FG CV", "Community CV", 'Mean TTE', 'Biomass weighted TTE')) %>%
+  # mutate(Func_Group = fct_relevel(Group,'Zoo', "Low Activity", "High Activity", "Fish")) %>%
+  # mutate(Model = fct_relevel(Model, 'Control','Control Sigma', 'Ceph', 'Energetics',  'Sigma', 'SE')) %>%
+  filter(Model == "Control" | Model == "Feeding"| Model == "Feeding + Growth") %>%
+  filter(Level == "Community") %>%
+    # filter(Remove == "N") %>%
+    # filter(Repro == "Dynamic") %>%
+   # filter(Model == "Simple"|Model == "Ceph") %>%
+  # filter(Fishing_Level == "None") %>%
+  # filter(Metric == "Total Biomass (g m3)" | Metric == "Fish:Community Biomass"| Metric == "Fish P:B"| Metric =="Biomass weighted PPMR"|Metric == "Biomass weighted TTE"|Metric == "Fish Biomass (g m3)") %>%
+  filter(Metric == "Total Biomass (g m3)") %>%
+ggplot(aes(x = Model, y=Value, fill = Model, linetype = Model), width =2) +
+  scale_fill_manual(values = c("grey" ,  "violet")) +
+  # labs(title = "Dynamic Repro") +
+  geom_violin(show.legend = F,lwd=0.5) +
+  scale_linetype_manual(values = c("longdash" , "solid")) +
+  scale_x_discrete(labels= Model_Sets) +
+  stat_summary(fun.y="median", shape=23, 
+                 geom="point", size=2,show.legend = F) +
+  labs(tag = "(b)", size = 12) +
+  ylab(expression(paste("biomass"~("g m"^-3))))+
+  # scale_fill_manual(values = c("#999999", "#E69F00", "#56B4E9")) +
+  # facet_wrap(~Metric, scales = "free_y") +
+  theme_classic(base_size = 12) +
+  theme(strip.text = element_blank(),
+        plot.tag = element_text(face="italic"),
+        axis.text.x = element_text(angle = 90),
+        axis.title = element_text(size=12),
+        axis.title.x = element_blank(),
+        axis.text = element_text(size=12))
+
+pD <- df_Violin_plot %>%
+  # mutate(Fishing_Level = fct_relevel(Fishing, 'None', 'Low','High')) %>%
+  mutate(Eco_Metric = fct_relevel(Metric, 'Total Biomass (g m3)','Fish:Community Biomass','FCL','Mean P:B','Biomass weighted PPMR', "Mean PPMR", "Mean FG CV", "Community CV", 'Mean TTE', 'Biomass weighted TTE', 'Community Production')) %>%
+  # mutate(Func_Group = fct_relevel(Group,'Zoo', "Low Activity", "High Activity", "Fish")) %>%
+  # mutate(Model = fct_relevel(Model, 'Control','Control Sigma', 'Ceph', 'Energetics',  'Sigma', 'SE')) %>%
+  filter(Model == "Control" | Model == "Feeding"| Model == "Feeding + Growth") %>%
+  filter(Level == "Community") %>%
+    # filter(Remove == "N") %>%
+    # filter(Repro == "Dynamic") %>%
+   # filter(Model == "Simple"|Model == "Ceph") %>%
+  # filter(Fishing_Level == "None") %>%
+  # filter(Metric == "Total Biomass (g m3)" | Metric == "Fish:Community Biomass"| Metric == "Fish P:B"| Metric =="Biomass weighted PPMR"|Metric == "Biomass weighted TTE"|Metric == "Fish Biomass (g m3)") %>%
+  filter(Metric == "1/Community_CV") %>%
+ggplot(aes(x = Model, y=Value, fill = Model, linetype = Model), width =2) +
+  scale_fill_manual(values = c("grey" ,  "violet")) +
+  scale_linetype_manual(values = c("longdash" , "solid")) +
+  # labs(title = "Dynamic Repro") +
+  geom_violin(show.legend = F, lwd=0.5) +
+  scale_x_discrete(labels= Model_Sets) +
+  stat_summary(fun.y="median", shape=23, 
+                 geom="point", size=2,show.legend = F) +
+  labs(tag = "(d)", size = 12) +
+  # ylab(expression(paste("log"[10]~" CV")))+
+  ylab("1/CV")+
+  # scale_fill_manual(values = c("#999999", "#E69F00", "#56B4E9")) +
+  # facet_wrap(~Metric, scales = "free_y") +
+  theme_classic(base_size = 12) +
+  theme(strip.text = element_blank(),
+        plot.tag = element_text(face="italic"),
+        axis.text.x = element_text(angle = 90),
+        axis.title = element_text(size=12),
+        axis.title.x = element_blank(),
+        axis.text = element_text(size=12))
+
+pE <- df_Violin_plot %>%
+  # mutate(Fishing_Level = fct_relevel(Fishing, 'None', 'Low','High')) %>%
+  mutate(Eco_Metric = fct_relevel(Metric, 'Total Biomass (g m3)','Fish:Community Biomass','FCL','Mean P:B','Biomass weighted PPMR', "Mean PPMR", "Mean FG CV", "Community CV", 'Mean TTE', 'Biomass weighted TTE', 'Community Production')) %>%
+  # mutate(Func_Group = fct_relevel(Group,'Zoo', "Low Activity", "High Activity", "Fish")) %>%
+  # mutate(Model = fct_relevel(Model, 'Control','Control Sigma', 'Ceph', 'Energetics',  'Sigma', 'SE')) %>%
+  filter(Model == "Control" | Model == "Feeding"| Model == "Feeding + Growth") %>%
+  filter(Level == "Community") %>%
+    # filter(Remove == "N") %>%
+    # filter(Repro == "Dynamic") %>%
+   # filter(Model == "Simple"|Model == "Ceph") %>%
+  # filter(Fishing_Level == "None") %>%
+  # filter(Metric == "Total Biomass (g m3)" | Metric == "Fish:Community Biomass"| Metric == "Fish P:B"| Metric =="Biomass weighted PPMR"|Metric == "Biomass weighted TTE"|Metric == "Fish Biomass (g m3)") %>%
+  filter(Metric == "Mean P:B") %>%
+ggplot(aes(x = Model, y=(1/Value), fill = Model, linetype = Model), width =2) +
+  scale_fill_manual(values = c("grey" , "violet")) +
+  scale_linetype_manual(values = c("longdash" , "solid")) +
+  scale_x_discrete(labels= Model_Sets) +
+  # labs(title = "Dynamic Repro") +
+  geom_violin(show.legend = F, lwd=0.5) +
+  stat_summary(fun.y="median", shape=23, 
+                 geom="point", size=2,show.legend = F) +
+  labs(tag = "(e)", size = 12) +
+  ylab("turnover time (years)")+
+  # scale_fill_manual(values = c("#999999", "#E69F00", "#56B4E9")) +
+  # facet_wrap(~Metric, scales = "free_y") +
+  theme_classic(base_size = 12) +
+  theme(strip.text = element_blank(),
+        plot.tag = element_text(face="italic"),
+        axis.text.x = element_text(angle = 90),
+        axis.title = element_text(size=12),
+        axis.title.x = element_blank(),
+        axis.text = element_text(size=12))
+
+pC <- df_Violin_plot %>%
+  filter(Metric == "Production") %>%
+  # mutate(Func_Group = fct_relevel(Group,'Zoo', "Low Activity", "High Activity", "Fish")) %>%
+  # mutate(Model = fct_relevel(Model, 'Control','Control Sigma', 'Ceph', 'Energetics',  'Sigma', 'SE')) %>%
+  # filter(Model == "Control" | Model == "Feeding"| Model == "Feeding + Growth") %>%
+  filter(Model == "Control" | Model == "Feeding + Growth") %>%
+  filter(Level == "Community") %>%
+    # filter(Remove == "N") %>%
+    # filter(Repro == "Dynamic") %>%
+   # filter(Model == "Simple"|Model == "Ceph") %>%
+  # filter(Fishing_Level == "None") %>%
+  # filter(Metric == "Total Biomass (g m3)" | Metric == "Fish:Community Biomass"| Metric == "Fish P:B"| Metric =="Biomass weighted PPMR"|Metric == "Biomass weighted TTE"|Metric == "Fish Biomass (g m3)") %>%
+  ggplot(aes(x = Model, y=Value, fill = Model, linetype = Model), width =2) +
+  scale_linetype_manual(values = c("longdash" , "solid")) +
+  scale_x_discrete(labels= Model_Sets) +
+  scale_fill_manual(values = c("grey" , "violet")) +
+  # labs(title = "Dynamic Repro") +
+  geom_violin(lwd=.5, show.legend = F) +
+  stat_summary(fun.y="median", shape=23,
+                 geom="point", size=2,show.legend = F) +
+  labs(tag = "(c)", size = 12) +
+  ylab(expression(paste("production"~("g m"^-3))))+
+  ylim(0.025,0.028) +
+  # scale_fill_manual(values = c("#999999", "#E69F00", "#56B4E9")) +
+  # facet_wrap(~Metric, scales = "free_y") +
+  theme_classic(base_size = 12) +
+  theme(strip.text = element_blank(),
+        plot.tag = element_text(face="italic"),
+        axis.text.x = element_text(angle = 90),
+        axis.title = element_text(size=12),
+        axis.title.x = element_blank(),
+        axis.text = element_text(size=12)) #+
+  # theme(legend.key.size = unit(1, 'lines'),
+  #         legend.position=c(0.85,0.8),
+  #         legend.background = element_blank(),
+  #     legend.title=element_text(size=8),
+  #     legend.text=element_text(size=6))
+
+pA/(pB|pC |pD |pE) + plot_layout(nrow = 2, heights = c(1.5,1))
+
+# ggsave("Figure_XX_Bio_Letters_180_180mm.png",
+#        units="mm",
+#        dpi = 600,
+#        width = 180,
+#        height = 180)
+
+# ggsave("Figure_XX_Bio_Letters_300_250mm.png",
+#        units="mm",
+#        dpi = 600,
+#        width = 300,
+#        height = 250)
+
+
+ggsave("Figure_XX_Bio_Letters_200_200mm.png",
+       units="mm",
+       dpi = 600,
+       width = 200,
+       height = 200)
+
+```
+
+```{r}
+df_Eco_Plot %>%
+  # mutate(Fishing_Level = fct_relevel(Fishing, 'None', 'Low','High')) %>%
+  mutate(Eco_Metric = fct_relevel(Metric, 'Total Biomass (g m3)','Fish:Community Biomass','FCL','Mean P:B','Biomass weighted PPMR', "Mean PPMR", "Mean FG CV", "Community CV", 'Mean TTE', 'Biomass weighted TTE', 'Community Production')) %>%
+  # mutate(Func_Group = fct_relevel(Group,'Zoo', "Low Activity", "High Activity", "Fish")) %>%
+  # mutate(Model = fct_relevel(Model, 'Control','Control Sigma', 'Ceph', 'Energetics',  'Sigma', 'SE')) %>%
+  filter(Model == "Control" | Model == "Feeding"| Model == "Feeding + Growth") %>%
+  filter(Level == "Community") %>%
+    # filter(Remove == "N") %>%
+    # filter(Repro == "Dynamic") %>%
+   # filter(Model == "Simple"|Model == "Ceph") %>%
+  # filter(Fishing_Level == "None") %>%
+  # filter(Metric == "Total Biomass (g m3)" | Metric == "Fish:Community Biomass"| Metric == "Fish P:B"| Metric =="Biomass weighted PPMR"|Metric == "Biomass weighted TTE"|Metric == "Fish Biomass (g m3)") %>%
+  filter(Metric == "Mean P:B") %>%
+ggplot(aes(x = Model, y=(1/Value), fill = Model), width =2) +
+  scale_fill_manual(values = c("grey" , "orange")) +
+  scale_x_discrete(labels= Model_Sets) +
+  # labs(title = "Dynamic Repro") +
+  geom_violin(show.legend = F, lwd=.3) +
+  stat_summary(fun.y="median", shape=23, 
+                 geom="point", size=2,show.legend = F) +
+  labs(tag = "E") +
+  ylab("Turnover Time (years)")+
+  # scale_fill_manual(values = c("#999999", "#E69F00", "#56B4E9")) +
+  # facet_wrap(~Metric, scales = "free_y") +
+  theme_classic(base_size = 10) +
+  theme(strip.text = element_blank(),
+        axis.text.x = element_text(angle = 90),
+        axis.title = element_text(size=12),
+        axis.title.x = element_blank(),
+        axis.text = element_text(size=10))
+```
+
