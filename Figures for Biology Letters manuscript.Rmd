@@ -3,11 +3,10 @@ title: "Biology Letters Manuscript Figures"
 output: html_notebook
 ---
 
-Compiling all the data and code required to produce the figures for manuscript in prep. for Biology Letters.
+Compiling all the data and code required to produce the figures for manuscript submitted to Biology Letters.
 
 Results exploring the effects of resolved cephalopod functional groups on predator-prey size relationships and ecosystem structure & function.
 This was achieved by comparing a control model (cephalopods parametrised the same as fish excepth for min & max. sizes) to models where feeding traits (PPMR) were adjusted to represent cephalopod feeding (Feeding Only) and to models where feeding and growth were adjusted to better represent the cephalopod functional groups (Feeding + Growth).
-
 
 ```{r}
 library(tidyverse)
@@ -15,33 +14,30 @@ library(tidyverse)
 library(plotrix)
 ```
 
-```{r}
-png_1 <- readPNG("C:/Users/kjmurphy/OneDrive - University of Tasmania/Thesis Figures/Conceptual Diagram/Fig_1_Panel_A_v1.png")
-
-png_1|>
-  get_colours(1:6)|>
-  plot_colours()
-```
-
-
-Figure 1: Predator-prey size relationships - Emergent trophic allometries and mean prey size panel plot
+# Figure 1: Predator-prey size relationships - Emergent trophic allometries and mean prey size panel plot
 
 Create conceptual diagram
-
-
-Figure 2: Ecosystem metrics - Biomass, turnover, stability (1/CV), productibity
-
 
 ## Figure XX: Predator-prey size relationships
 
 ```{r}
-df_combined <- read.csv("df_Figure_1_Trophic_Allometry_Model_Results.csv")
+# Read in modelled relative trophic position data
+df_RTP <- read.csv("df_Figure_1_Trophic_Allometry_Model_Results.csv")[,-1]
 
+glimpse(df_RTP)
+```
+
+```{r}
   # Read in empirical trophic level data
   df_emp_SIA <- read_csv("df_emp_SIA.csv")
   # Make copy
   df_emp_SIA_rel_ <- df_emp_SIA
   
+glimpse(df_emp_SIA_rel_)
+```
+
+
+```{r}
   df_emp_SIA_rel <- df_emp_SIA_rel_ %>%
   mutate(name = recode(name, "Inactive Cephs" = "Low Activity","Active Cephs" ="High Activity"))
   
@@ -52,7 +48,7 @@ df_combined <- read.csv("df_Figure_1_Trophic_Allometry_Model_Results.csv")
   
   model_lm_emp_active <- lm(RTP ~ log10(Predator_Size), data = df_emp_active)
   
-  df_active <- df_combined %>%
+  df_active <- df_RTP %>%
     filter(Func_Group == "High Activity")
   
   min_emp_RTP_active <- model_lm_emp_active$coefficients[1] + (model_lm_emp_active$coefficients[2] * log10(min(df_emp_active$Predator_Size)))
@@ -76,7 +72,7 @@ df_combined <- read.csv("df_Figure_1_Trophic_Allometry_Model_Results.csv")
   df_emp_inactive <- df_emp_SIA_rel %>%
     filter(name == "Low Activity")
   
-  df_inactive <- df_combined %>%
+  df_inactive <- df_RTP %>%
     filter(Func_Group == "Low Activity")
   
   
@@ -104,61 +100,10 @@ df_combined <- read.csv("df_Figure_1_Trophic_Allometry_Model_Results.csv")
   
   df_emp_active$RTP_rescaled <- df_emp_active$RTP + Act_rescale_val
   
-  df_zoom <- df_combined %>%
+  df_zoom <- df_RTP %>%
     filter(Predator == "Low Activity" | Predator ==  "High Activity")
   
-  df_RTP_plot <- df_combined
-  
-# df_RTP_plot <- read.csv("RTP_plot_F+G_combined_results.csv")
-  
-RTP_plot <-
-  df_RTP_plot %>%
-    mutate(Func_Group = recode(Func_Group, "Low Activity" = "low activity","High Activity" ="high activity",
-                              "Zooplankton" = 'zooplankton', "Fish" = "fish")) %>% 
-    mutate(name = fct_relevel(Func_Group, 'zooplankton','low activity','high activity','fish')) %>%
-    # mutate(name = fct_relevel(Predator, 'Zooplankton','Low Activity','High Activity','Fish')) %>%
-    ggplot(aes(x=Predator_Size, y= Median_RTP, colour=name, fill=name)) +
-    # scale_colour_manual(values = c( "#F8766D", "#00BFC4","#C77CFF", "#7CAE00")) +
-    
-  scale_colour_manual(values = c("#C77CFF" ,  "#00BFC4","#F8766D","#7CAE00")) +
-    scale_fill_manual(values = c("#C77CFF" , "#00BFC4","#F8766D", "#7CAE00")) +
-   
-    geom_line(size=1) +
-  # geom_point(size = .2) +
-    # geom_smooth(method="lm", size=1) +
-    ylim(2, 7.1) +
-    # xlim(-8, 6) +
-   # xlab(expression(paste("Body Mass"~(10^X~g)))) +
-  xlab("predator mass (g)") +
-  labs(col = "functional group")+
-  labs(tag = "(b)", size = 10) +
-  # labs(tag = "A", size = 10) +
-  ylab("relative trophic position") +
-    # geom_smooth(method = "lm", size=1.5, alpha = 0, linetype = "dashed") +
-    #facet_wrap(~Species_Order, scales = "free_x") +
-    geom_point(aes(x=Predator_Size, y= RTP_rescaled, colour=name),data = df_emp_active, size = 0.25, show.legend = F) +
-  # geom_smooth(aes(x=Predator_Size, y= RTP, colour=name),linetype="dashed", method = "lm", data = df_emp_active, size = 1, alpha = 0.1, show.legend = F) +
-    # geom_smooth(aes(x=Predator_Size, y= RTP), data = df_emp_active,  method = "lm", size = 1, alpha = 0.4,linetype = "dashed", colour="black") +
-    # geom_smooth(aes(x=Predator_Size, y= RTP, colour=name), data = df_emp_active,  method = "lm", size = 1.5, alpha = 0.25,linetype = "longdash") +
-    
-    geom_point(aes(x=Predator_Size, y= RTP_rescaled, colour=name),data = df_emp_inactive, size = 0.25, show.legend = F) +
-  # geom_smooth(aes(x=Predator_Size, y= RTP, colour=name),linetype="dashed", method = "lm", data = df_emp_inactive, size = 1, alpha = 0.1, show.legend = F) +
-   geom_ribbon(aes(ymin = Min_RTP, ymax = Max_RTP), linetype= "dashed", alpha = 0.25,size = 0.35, show.legend = F) +
-    # geom_smooth(aes(x=Predator_Size, y= RTP, colour=name), data = df_emp_inactive,  method = "lm", size = 1.5, alpha = 0.25,linetype = "twodash") +
-    # geom_smooth(aes(x=Predator_Size, y= RTP), data = df_emp_inactive,  method = "lm", size = 1, alpha = 0.4,linetype = "dashed", colour="grey52") +
-    scale_x_log10(limits =c(10^-5,10^6)) +
-    # ggtitle(label = "Community-level RTP Fixed-rescaling: Ceph FGs empirical fit (dots and solid lines) vs model output (dashed lines)") +
-    theme_classic() +
-    theme(
-      axis.title = element_text(size=10),
-       # axis.title.x = element_blank(),
-      axis.text.x=element_text(colour="black", size = 8),
-      axis.text=element_text(colour="black", size = 8)) +
-    theme(legend.key.size = unit(1, 'lines'),
-          legend.position=c(0.25,0.8),
-          legend.text = element_text(size=10),
-          # axis.title.x  = element_blank(),
-          legend.title = element_text(size=12))
+  df_RTP_plot <- df_RTP
   
 
 df_emp_active <- df_emp_active %>% 
@@ -186,7 +131,7 @@ RTP_plot_v2 <-
     scale_colour_manual(values = c("#CCCCCC" ,  "#01cbfeff","#FE5455ff","#666333")) +
     scale_fill_manual(values = c("#CCCCCC" , "#01cbfeff","#FE5455ff", "#666333")) +
    
-    geom_line(size=1) +
+    geom_line(linewidth=1) +
   # geom_point(size = .2) +
     # geom_smooth(method="lm", size=1) +
     ylim(2, 7.1) +
@@ -226,6 +171,8 @@ RTP_plot_v2 <-
           legend.text = element_text(size=14),
           # axis.title.x  = element_blank(),
           legend.title = element_text(size=14))
+
+RTP_plot_v2
 ```
 
 
@@ -296,11 +243,13 @@ library(grid)
 
 
 
-png_1 <- readPNG("C:/Users/kjmurphy/OneDrive - University of Tasmania/Thesis Figures/Conceptual Diagram/Fig_1_Panel_A_v1.png")
+png_1 <- readPNG("Fig_1_Panel_A_v1.png")
 g <- rasterGrob(png_1, interpolate = TRUE)
 
 Fig_1_pA <- Fig_1_pA + annotation_custom(g, xmin=-Inf, xmax=Inf, ymin=-Inf, ymax=Inf)
 
+
+Fig_1_pA
 ```
 
 ```{r}
@@ -396,10 +345,10 @@ write.csv(df_plot, paste(Species,"fk_df.csv"))
 
 ```{r}
 
-df_prey_w <- read.csv("df_weight.csv")
-
-feeding_kernel_mode("low activity", 10^0, 10^2, 0, 2, df_prey_w)
-feeding_kernel_beta("high activity", 10^0, 10^2, 25, 2, df_prey_w)
+# df_prey_w <- read.csv("df_weight.csv")
+# 
+# feeding_kernel_mode("low activity", 10^0, 10^2, 0, 2, df_prey_w)
+# feeding_kernel_beta("high activity", 10^0, 10^2, 25, 2, df_prey_w)
 
 ```
 
@@ -468,6 +417,8 @@ df_fk_plot %>%
 # g2 <- rasterGrob(png_2, interpolate = TRUE)
 # 
 # Fig_1_pC <-  Fig_1_pC + annotation_custom(g2, xmin=-Inf, xmax=Inf, ymin=-Inf, ymax=Inf)
+
+Fig_1_pC
 ```
 
 
@@ -480,59 +431,6 @@ df_fk_plot %>%
 # df_ref$Expected_prey_size = 0.005882353*df_ref$Predator_Size
 
 df_PPMR_plot <- read.csv("PPMR_plot_F+G_combined_results.csv")
-
-PPMR_plot <- df_PPMR_plot %>% 
-  mutate(name = case_when(name == 'Zooplankton' ~ "zooplankton",
-                            name == 'Low Activity' ~ "low activity",
-                            name == 'High Activity' ~ "high activity",
-                            name == 'Fish' ~ "fish")) %>% 
-    mutate(name = fct_relevel(name, 'zooplankton','low activity','high activity','fish')) %>%
-  # mutate(name = fct_relevel(name, 'Zooplankton','Low Activity','High Activity','Fish')) %>%
-  ggplot(aes(x = Predator_Size, y = Median_N, color = name)) +
-  # geom_line(data = df_ref, aes(x = Predator_Size, y = Expected_Prey_Size_PPMR1),
-  #             linetype = "solid", size = 0.75) +
-  #   geom_line(data = df_ref, aes(x = Predator_Size, y = Expected_Prey_Size_PPMR10),
-  #             linetype = "longdash", size = 0.75) +
-  #   geom_line(data = df_ref, aes(x = Predator_Size, y = Expected_Prey_Size_PPMR100),
-  #             linetype = "dashed", size = 0.75) +
-  #   geom_line(data = df_ref, aes(x = Predator_Size, y = Expected_Prey_Size_PPMR1000),
-  #             linetype = "twodash", size = 0.75) +
-  #   geom_line(data = df_ref, aes(x = Predator_Size, y = Expected_Prey_Size_PPMR10000),
-  #             linetype = "dotdash", size = 0.75) +
-  #   geom_line(data = df_ref, aes(x = Predator_Size, y = Expected_Prey_Size_PPMR100000),
-  #             linetype = "dotted", size = 0.75) +
-    geom_line(size = 1, show.legend = F) +
-     labs(col = "functional group")+
-    # geom_segment(aes(x = min(Predator_Size), xend = max(Predator_Size), y = (min(Predator_Size)*0.005882353), yend = (max(Predator_Size)*0.005882353)), linetype = "dashed", colour = "black", size=0.5) +
-    geom_segment(aes(x = min(Predator_Size), xend = max(Predator_Size), y = (min(Predator_Size)* 0.01010101), yend = (max(Predator_Size)* 0.01010101)), linetype = "dashed", colour = "dark grey", size=0.5) +
-    geom_segment(aes(x = min(Predator_Size), xend = max(Predator_Size), y = (min(Predator_Size)*  0.0009775171), yend = (max(Predator_Size)*  0.0009775171)), linetype = "dashed", colour = "black", size=0.5) + ## Barnes dataset realised PPMR value for ectotherm vertebrates
-    # geom_segment(aes(x = min(Predator_Size), xend = max(Predator_Size), y = (min(Predator_Size)*.01), yend = (max(Predator_Size)*.01)), linetype = "longdash", colour = "black", size=0.5) +
-    # scale_colour_manual(values = c( "#F8766D", "#00BFC4","#C77CFF", "#7CAE00")) +
-     scale_colour_manual(values = c("#CCCCCC" ,  "#01cbfeff","#FE5455ff","#666333")) +
-   scale_fill_manual(values = c("#CCCCCC" ,  "#01cbfeff","#FE5455ff","#666333")) +
-    # scale_colour_manual(values = c("#C77CFF" ,  "#00BFC4","#F8766D","#7CAE00")) +
-    # scale_fill_manual(values = c("#C77CFF" ,  "#00BFC4","#F8766D","#7CAE00")) +
-    geom_ribbon(aes(ymin = Min_N, ymax = Max_N, fill = name), alpha = 0.25, linetype = "dashed",show.legend = F, size = 0.35) +
-    scale_x_log10() +
-    scale_y_log10() +
-    labs(tag = "(d)", size = 10) +
-    # facet_wrap( ~ Predator) +
-    labs(x = "predator mass (g) ", y = "mean prey mass (g)") +
-    # annotate(angle = 48, "text", label= "PPMR = 170", x = 10^-10.2, y = 10^-11.5, size = 3.5) +
-    annotate(angle = 33, "text", label= "PPMR = 99", x = 10^-10.2, y = 10^-11.7, size = 4, colour = "dark gray",fontface = 2) + # If using Barnes realised PPMR for cephalopods of 99
-    annotate(angle = 33, "text", label= "PPMR = 1023", x = 10^-7.5, y = 10^-10, size = 4, fontface = 2) + # If using Barnes realised PPMR for cephalopods of 1023 ectotherm vertebrates
-    coord_cartesian(clip = 'off') +  # This keeps the labels from disappearing
-    theme_classic() + 
-    theme(legend.key.size = unit(1, 'lines'),
-          legend.position=c(0.25,0.8),
-          legend.background = element_blank(),
-          axis.title = element_text(size=11),
-           # axis.title.x = element_blank(),
-          plot.tag = element_text(face = 'italic'),
-      axis.text.x=element_text(colour="black", size = 11),
-      axis.text.y=element_text(colour="black", size = 11),
-      legend.title=element_text(size=11), 
-      legend.text=element_text(size=11))
 
 
 PPMR_plot_v2 <-
@@ -600,20 +498,14 @@ PPMR_plot_v2 <-
 library(patchwork)
 Fig_1_pA + RTP_plot_v2 + Fig_1_pC + PPMR_plot_v2 +  plot_layout(widths = c(1,1.4))
 
-# ggsave("Figure_1_v2.png",
+# ggsave("Figure_1_v3.png",
 #        units="mm",
 #        dpi = 600,
 #        width = 240,
 #        height =240)
-
-ggsave("Figure_1_v3.png",
-       units="mm",
-       dpi = 600,
-       width = 240,
-       height =240)
 ```
 
-## Figure XX: Ecosystem Metrics
+## Figure 2: Ecosystem Metrics
 
 Read in raw data with Control, Feeding-Only, and Feeding+Growth model sets
 
@@ -768,6 +660,8 @@ png_x <- readPNG("Fig 2 Legend addition.png")
 g_x <- rasterGrob(png_x, interpolate = TRUE)
 
 pA <- pA + annotation_custom(g_x, xmin=-15.7, xmax=-11, ymin=0, ymax=4.8)
+
+pA
 ```
 
 
@@ -929,57 +823,13 @@ pC <- df_Violin_plot %>%
 
 pA/(pB|pC |pD |pE) + plot_layout(nrow = 2, heights = c(1.5,1))
 
-# ggsave("Figure_XX_Bio_Letters_180_180mm.png",
+
+# ggsave("Figure_2_Bio_Letters_200_200mm.png",
 #        units="mm",
 #        dpi = 600,
-#        width = 180,
-#        height = 180)
-
-# ggsave("Figure_XX_Bio_Letters_300_250mm.png",
-#        units="mm",
-#        dpi = 600,
-#        width = 300,
-#        height = 250)
-
-
-ggsave("Figure_XX_Bio_Letters_200_200mm.png",
-       units="mm",
-       dpi = 600,
-       width = 200,
-       height = 200)
+#        width = 200,
+#        height = 200)
 
 ```
 
-```{r}
-df_Eco_Plot %>%
-  # mutate(Fishing_Level = fct_relevel(Fishing, 'None', 'Low','High')) %>%
-  mutate(Eco_Metric = fct_relevel(Metric, 'Total Biomass (g m3)','Fish:Community Biomass','FCL','Mean P:B','Biomass weighted PPMR', "Mean PPMR", "Mean FG CV", "Community CV", 'Mean TTE', 'Biomass weighted TTE', 'Community Production')) %>%
-  # mutate(Func_Group = fct_relevel(Group,'Zoo', "Low Activity", "High Activity", "Fish")) %>%
-  # mutate(Model = fct_relevel(Model, 'Control','Control Sigma', 'Ceph', 'Energetics',  'Sigma', 'SE')) %>%
-  filter(Model == "Control" | Model == "Feeding"| Model == "Feeding + Growth") %>%
-  filter(Level == "Community") %>%
-    # filter(Remove == "N") %>%
-    # filter(Repro == "Dynamic") %>%
-   # filter(Model == "Simple"|Model == "Ceph") %>%
-  # filter(Fishing_Level == "None") %>%
-  # filter(Metric == "Total Biomass (g m3)" | Metric == "Fish:Community Biomass"| Metric == "Fish P:B"| Metric =="Biomass weighted PPMR"|Metric == "Biomass weighted TTE"|Metric == "Fish Biomass (g m3)") %>%
-  filter(Metric == "Mean P:B") %>%
-ggplot(aes(x = Model, y=(1/Value), fill = Model), width =2) +
-  scale_fill_manual(values = c("grey" , "orange")) +
-  scale_x_discrete(labels= Model_Sets) +
-  # labs(title = "Dynamic Repro") +
-  geom_violin(show.legend = F, lwd=.3) +
-  stat_summary(fun.y="median", shape=23, 
-                 geom="point", size=2,show.legend = F) +
-  labs(tag = "E") +
-  ylab("Turnover Time (years)")+
-  # scale_fill_manual(values = c("#999999", "#E69F00", "#56B4E9")) +
-  # facet_wrap(~Metric, scales = "free_y") +
-  theme_classic(base_size = 10) +
-  theme(strip.text = element_blank(),
-        axis.text.x = element_text(angle = 90),
-        axis.title = element_text(size=12),
-        axis.title.x = element_blank(),
-        axis.text = element_text(size=10))
-```
 
