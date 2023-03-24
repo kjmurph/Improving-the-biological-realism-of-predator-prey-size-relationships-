@@ -1,0 +1,811 @@
+Model,Metric,Group,Level,Value,Variant
+Control,Biomass (g m3),Active,Func Group,0.006141904,v1
+Control,Biomass (g m3),Inactive,Func Group,0.006141904,v1
+Control,Biomass (g m3),Fish,Func Group,0.025034086,v1
+Control,Biomass (g m3),Zoo,Func Group,0.040456546,v1
+Control,Total Biomass (g m3),,Community,0.07777444,v1
+Control,P:B,Active,Func Group,0.0803983,v1
+Control,P:B,Inactive,Func Group,0.0803983,v1
+Control,P:B,Fish,Func Group,0.08699314,v1
+Control,P:B,Zoo,Func Group,0.60700338,v1
+Control,CV,Active,Func Group,10.8522,v1
+Control,CV,Inactive,Func Group,10.8522,v1
+Control,CV,Fish,Func Group,5.6752,v1
+Control,CV,Zoo,Func Group,24.8476,v1
+Control,Community CV,,Community,12.267,v1
+Control,Mean FG CV,,Community,13.0568,v1
+Control,Mean P:B,NA,Community,0.21369828,v1
+Control,Biomass (g m3),Active,Func Group,0.005670704,v2
+Control,Biomass (g m3),Inactive,Func Group,0.005670704,v2
+Control,Biomass (g m3),Fish,Func Group,0.025386617,v2
+Control,Biomass (g m3),Zoo,Func Group,0.039947868,v2
+Control,Total Biomass (g m3),,Community,0.076675893,v2
+Control,P:B,Active,Func Group,0.07852853,v2
+Control,P:B,Inactive,Func Group,0.07852853,v2
+Control,P:B,Fish,Func Group,0.08601749,v2
+Control,P:B,Zoo,Func Group,0.61115553,v2
+Control,CV,Active,Func Group,9.85628,v2
+Control,CV,Inactive,Func Group,9.85628,v2
+Control,CV,Fish,Func Group,5.25989,v2
+Control,CV,Zoo,Func Group,22.7451,v2
+Control,Community CV,,Community,11.2763,v2
+Control,Mean FG CV,,Community,11.9293875,v2
+Control,Mean P:B,NA,Community,0.21355752,v2
+Control,Biomass (g m3),Active,Func Group,0.005182003,v3
+Control,Biomass (g m3),Inactive,Func Group,0.005182003,v3
+Control,Biomass (g m3),Fish,Func Group,0.025779449,v3
+Control,Biomass (g m3),Zoo,Func Group,0.039421226,v3
+Control,Total Biomass (g m3),,Community,0.075564681,v3
+Control,P:B,Active,Func Group,0.07664788,v3
+Control,P:B,Inactive,Func Group,0.07664788,v3
+Control,P:B,Fish,Func Group,0.08497209,v3
+Control,P:B,Zoo,Func Group,0.61489711,v3
+Control,CV,Active,Func Group,8.77292,v3
+Control,CV,Inactive,Func Group,8.77292,v3
+Control,CV,Fish,Func Group,4.78755,v3
+Control,CV,Zoo,Func Group,20.5118,v3
+Control,Community CV,,Community,10.2151,v3
+Control,Mean FG CV,,Community,10.7112975,v3
+Control,Mean P:B,NA,Community,0.21329124,v3
+Feeding + Growth,Biomass (g m3),Active,Func Group,0.000858759,v1
+Feeding + Growth,Biomass (g m3),Inactive,Func Group,0.001384607,v1
+Feeding + Growth,Biomass (g m3),Fish,Func Group,0.033291777,v1
+Feeding + Growth,Biomass (g m3),Zoo,Func Group,0.035388964,v1
+Feeding + Growth,Total Biomass (g m3),,Community,0.070924107,v1
+Feeding + Growth,P:B,Active,Func Group,0.13822805,v1
+Feeding + Growth,P:B,Inactive,Func Group,0.13350295,v1
+Feeding + Growth,P:B,Fish,Func Group,0.07899598,v1
+Feeding + Growth,P:B,Zoo,Func Group,0.64291398,v1
+Feeding + Growth,CV,Active,Func Group,55.1203,v1
+Feeding + Growth,CV,Inactive,Func Group,70.2025,v1
+Feeding + Growth,CV,Fish,Func Group,5.36185,v1
+Feeding + Growth,CV,Zoo,Func Group,19.939,v1
+Feeding + Growth,Community CV,,Community,7.95878,v1
+Feeding + Growth,Mean FG CV,,Community,37.6559125,v1
+Feeding + Growth,Mean P:B,NA,Community,0.24841024,v1
+Feeding + Growth,Biomass (g m3),Active,Func Group,0.000780149,v10
+Feeding + Growth,Biomass (g m3),Inactive,Func Group,0.001323789,v10
+Feeding + Growth,Biomass (g m3),Fish,Func Group,0.03332348,v10
+Feeding + Growth,Biomass (g m3),Zoo,Func Group,0.035415477,v10
+Feeding + Growth,Total Biomass (g m3),,Community,0.070842895,v10
+Feeding + Growth,P:B,Active,Func Group,0.13868403,v10
+Feeding + Growth,P:B,Inactive,Func Group,0.13322894,v10
+Feeding + Growth,P:B,Fish,Func Group,0.07894436,v10
+Feeding + Growth,P:B,Zoo,Func Group,0.64216778,v10
+Feeding + Growth,CV,Active,Func Group,55.9076,v10
+Feeding + Growth,CV,Inactive,Func Group,70.1996,v10
+Feeding + Growth,CV,Fish,Func Group,5.45654,v10
+Feeding + Growth,CV,Zoo,Func Group,19.9345,v10
+Feeding + Growth,Community CV,,Community,7.96543,v10
+Feeding + Growth,Mean FG CV,,Community,37.87456,v10
+Feeding + Growth,Mean P:B,NA,Community,0.248256278,v10
+Feeding + Growth,Biomass (g m3),Active,Func Group,0.00077998,v11
+Feeding + Growth,Biomass (g m3),Inactive,Func Group,0.001807856,v11
+Feeding + Growth,Biomass (g m3),Fish,Func Group,0.033224618,v11
+Feeding + Growth,Biomass (g m3),Zoo,Func Group,0.035288003,v11
+Feeding + Growth,Total Biomass (g m3),,Community,0.071100457,v11
+Feeding + Growth,P:B,Active,Func Group,0.137594,v11
+Feeding + Growth,P:B,Inactive,Func Group,0.11782993,v11
+Feeding + Growth,P:B,Fish,Func Group,0.07896092,v11
+Feeding + Growth,P:B,Zoo,Func Group,0.64369461,v11
+Feeding + Growth,CV,Active,Func Group,55.1515,v11
+Feeding + Growth,CV,Inactive,Func Group,55.6457,v11
+Feeding + Growth,CV,Fish,Func Group,5.39946,v11
+Feeding + Growth,CV,Zoo,Func Group,19.7927,v11
+Feeding + Growth,Community CV,,Community,7.91019,v11
+Feeding + Growth,Mean FG CV,,Community,33.99734,v11
+Feeding + Growth,Mean P:B,NA,Community,0.244519865,v11
+Feeding + Growth,Biomass (g m3),Active,Func Group,0.000775601,v12
+Feeding + Growth,Biomass (g m3),Inactive,Func Group,0.00256242,v12
+Feeding + Growth,Biomass (g m3),Fish,Func Group,0.033075209,v12
+Feeding + Growth,Biomass (g m3),Zoo,Func Group,0.035086103,v12
+Feeding + Growth,Total Biomass (g m3),,Community,0.071499333,v12
+Feeding + Growth,P:B,Active,Func Group,0.136371,v12
+Feeding + Growth,P:B,Inactive,Func Group,0.09728661,v12
+Feeding + Growth,P:B,Fish,Func Group,0.07914539,v12
+Feeding + Growth,P:B,Zoo,Func Group,0.64605216,v12
+Feeding + Growth,CV,Active,Func Group,54.3296,v12
+Feeding + Growth,CV,Inactive,Func Group,37.5089,v12
+Feeding + Growth,CV,Fish,Func Group,5.36724,v12
+Feeding + Growth,CV,Zoo,Func Group,19.2981,v12
+Feeding + Growth,Community CV,,Community,7.60257,v12
+Feeding + Growth,Mean FG CV,,Community,24.821282,v12
+Feeding + Growth,Mean P:B,NA,Community,0.23971379,v12
+Feeding + Growth,Biomass (g m3),Active,Func Group,0.000875702,v13
+Feeding + Growth,Biomass (g m3),Inactive,Func Group,0.001324942,v13
+Feeding + Growth,Biomass (g m3),Fish,Func Group,0.033433495,v13
+Feeding + Growth,Biomass (g m3),Zoo,Func Group,0.035408469,v13
+Feeding + Growth,Total Biomass (g m3),,Community,0.071042608,v13
+Feeding + Growth,P:B,Active,Func Group,0.12887558,v13
+Feeding + Growth,P:B,Inactive,Func Group,0.13146054,v13
+Feeding + Growth,P:B,Fish,Func Group,0.07899012,v13
+Feeding + Growth,P:B,Zoo,Func Group,0.64127806,v13
+Feeding + Growth,CV,Active,Func Group,43.3983,v13
+Feeding + Growth,CV,Inactive,Func Group,69.8244,v13
+Feeding + Growth,CV,Fish,Func Group,5.55568,v13
+Feeding + Growth,CV,Zoo,Func Group,20.3777,v13
+Feeding + Growth,Community CV,,Community,8.17527,v13
+Feeding + Growth,Mean FG CV,,Community,29.46627,v13
+Feeding + Growth,Mean P:B,NA,Community,0.245151075,v13
+Feeding + Growth,Biomass (g m3),Active,Func Group,0.000869893,v14
+Feeding + Growth,Biomass (g m3),Inactive,Func Group,0.001813095,v14
+Feeding + Growth,Biomass (g m3),Fish,Func Group,0.033356917,v14
+Feeding + Growth,Biomass (g m3),Zoo,Func Group,0.035264959,v14
+Feeding + Growth,Total Biomass (g m3),,Community,0.071304864,v14
+Feeding + Growth,P:B,Active,Func Group,0.12787208,v14
+Feeding + Growth,P:B,Inactive,Func Group,0.11622288,v14
+Feeding + Growth,P:B,Fish,Func Group,0.07895254,v14
+Feeding + Growth,P:B,Zoo,Func Group,0.64297478,v14
+Feeding + Growth,CV,Active,Func Group,42.9039,v14
+Feeding + Growth,CV,Inactive,Func Group,55.3468,v14
+Feeding + Growth,CV,Fish,Func Group,5.52753,v14
+Feeding + Growth,CV,Zoo,Func Group,20.1076,v14
+Feeding + Growth,Community CV,,Community,8.02303,v14
+Feeding + Growth,Mean FG CV,,Community,26.381772,v14
+Feeding + Growth,Mean P:B,NA,Community,0.24150557,v14
+Feeding + Growth,Biomass (g m3),Active,Func Group,0.000858991,v15
+Feeding + Growth,Biomass (g m3),Inactive,Func Group,0.002581316,v15
+Feeding + Growth,Biomass (g m3),Fish,Func Group,0.033207569,v15
+Feeding + Growth,Biomass (g m3),Zoo,Func Group,0.035116354,v15
+Feeding + Growth,Total Biomass (g m3),,Community,0.071764229,v15
+Feeding + Growth,P:B,Active,Func Group,0.12689663,v15
+Feeding + Growth,P:B,Inactive,Func Group,0.09616613,v15
+Feeding + Growth,P:B,Fish,Func Group,0.0790954,v15
+Feeding + Growth,P:B,Zoo,Func Group,0.6461868,v15
+Feeding + Growth,CV,Active,Func Group,42.5088,v15
+Feeding + Growth,CV,Inactive,Func Group,37.3799,v15
+Feeding + Growth,CV,Fish,Func Group,5.40556,v15
+Feeding + Growth,CV,Zoo,Func Group,19.6178,v15
+Feeding + Growth,Community CV,,Community,7.77604,v15
+Feeding + Growth,Mean FG CV,,Community,22.53762,v15
+Feeding + Growth,Mean P:B,NA,Community,0.23708624,v15
+Feeding + Growth,Biomass (g m3),Active,Func Group,0.000971043,v16
+Feeding + Growth,Biomass (g m3),Inactive,Func Group,0.001315592,v16
+Feeding + Growth,Biomass (g m3),Fish,Func Group,0.033436976,v16
+Feeding + Growth,Biomass (g m3),Zoo,Func Group,0.035351672,v16
+Feeding + Growth,Total Biomass (g m3),,Community,0.071075283,v16
+Feeding + Growth,P:B,Active,Func Group,0.12098825,v16
+Feeding + Growth,P:B,Inactive,Func Group,0.13058909,v16
+Feeding + Growth,P:B,Fish,Func Group,0.07909316,v16
+Feeding + Growth,P:B,Zoo,Func Group,0.64158209,v16
+Feeding + Growth,CV,Active,Func Group,36.786,v16
+Feeding + Growth,CV,Inactive,Func Group,69.5714,v16
+Feeding + Growth,CV,Fish,Func Group,5.6177,v16
+Feeding + Growth,CV,Zoo,Func Group,20.3511,v16
+Feeding + Growth,Community CV,,Community,8.15261,v16
+Feeding + Growth,Mean FG CV,,Community,28.095762,v16
+Feeding + Growth,Mean P:B,NA,Community,0.243063148,v16
+Feeding + Growth,Biomass (g m3),Active,Func Group,0.000962909,v17
+Feeding + Growth,Biomass (g m3),Inactive,Func Group,0.001794949,v17
+Feeding + Growth,Biomass (g m3),Fish,Func Group,0.033346645,v17
+Feeding + Growth,Biomass (g m3),Zoo,Func Group,0.035233121,v17
+Feeding + Growth,Total Biomass (g m3),,Community,0.071337625,v17
+Feeding + Growth,P:B,Active,Func Group,0.12002376,v17
+Feeding + Growth,P:B,Inactive,Func Group,0.11528842,v17
+Feeding + Growth,P:B,Fish,Func Group,0.07901117,v17
+Feeding + Growth,P:B,Zoo,Func Group,0.64247704,v17
+Feeding + Growth,CV,Active,Func Group,35.8217,v17
+Feeding + Growth,CV,Inactive,Func Group,54.7983,v17
+Feeding + Growth,CV,Fish,Func Group,5.58411,v17
+Feeding + Growth,CV,Zoo,Func Group,20.305,v17
+Feeding + Growth,Community CV,,Community,8.12645,v17
+Feeding + Growth,Mean FG CV,,Community,24.927112,v17
+Feeding + Growth,Mean P:B,NA,Community,0.239200098,v17
+Feeding + Growth,Biomass (g m3),Active,Func Group,0.000945739,v18
+Feeding + Growth,Biomass (g m3),Inactive,Func Group,0.002553407,v18
+Feeding + Growth,Biomass (g m3),Fish,Func Group,0.033207787,v18
+Feeding + Growth,Biomass (g m3),Zoo,Func Group,0.03509881,v18
+Feeding + Growth,Total Biomass (g m3),,Community,0.071805743,v18
+Feeding + Growth,P:B,Active,Func Group,0.11941642,v18
+Feeding + Growth,P:B,Inactive,Func Group,0.09558619,v18
+Feeding + Growth,P:B,Fish,Func Group,0.07910311,v18
+Feeding + Growth,P:B,Zoo,Func Group,0.64542252,v18
+Feeding + Growth,CV,Active,Func Group,35.8125,v18
+Feeding + Growth,CV,Inactive,Func Group,37.1814,v18
+Feeding + Growth,CV,Fish,Func Group,5.44113,v18
+Feeding + Growth,CV,Zoo,Func Group,19.8087,v18
+Feeding + Growth,Community CV,,Community,7.84864,v18
+Feeding + Growth,Mean FG CV,,Community,21.218474,v18
+Feeding + Growth,Mean P:B,NA,Community,0.23488206,v18
+Feeding + Growth,Biomass (g m3),Active,Func Group,0.000700562,v19
+Feeding + Growth,Biomass (g m3),Inactive,Func Group,0.001252545,v19
+Feeding + Growth,Biomass (g m3),Fish,Func Group,0.033364835,v19
+Feeding + Growth,Biomass (g m3),Zoo,Func Group,0.03546172,v19
+Feeding + Growth,Total Biomass (g m3),,Community,0.070779661,v19
+Feeding + Growth,P:B,Active,Func Group,0.13915109,v19
+Feeding + Growth,P:B,Inactive,Func Group,0.13307593,v19
+Feeding + Growth,P:B,Fish,Func Group,0.07893048,v19
+Feeding + Growth,P:B,Zoo,Func Group,0.64119323,v19
+Feeding + Growth,CV,Active,Func Group,56.4514,v19
+Feeding + Growth,CV,Inactive,Func Group,70.0613,v19
+Feeding + Growth,CV,Fish,Func Group,5.54785,v19
+Feeding + Growth,CV,Zoo,Func Group,19.9427,v19
+Feeding + Growth,Community CV,,Community,8.0003,v19
+Feeding + Growth,Mean FG CV,,Community,38.0008125,v19
+Feeding + Growth,Mean P:B,NA,Community,0.248087683,v19
+Feeding + Growth,Biomass (g m3),Active,Func Group,0.000858271,v2
+Feeding + Growth,Biomass (g m3),Inactive,Func Group,0.001887731,v2
+Feeding + Growth,Biomass (g m3),Fish,Func Group,0.033198678,v2
+Feeding + Growth,Biomass (g m3),Zoo,Func Group,0.03518824,v2
+Feeding + Growth,Total Biomass (g m3),,Community,0.071132919,v2
+Feeding + Growth,P:B,Active,Func Group,0.13733682,v2
+Feeding + Growth,P:B,Inactive,Func Group,0.11858138,v2
+Feeding + Growth,P:B,Fish,Func Group,0.07906092,v2
+Feeding + Growth,P:B,Zoo,Func Group,0.64443134,v2
+Feeding + Growth,CV,Active,Func Group,55.0894,v2
+Feeding + Growth,CV,Inactive,Func Group,56.5363,v2
+Feeding + Growth,CV,Fish,Func Group,5.46982,v2
+Feeding + Growth,CV,Zoo,Func Group,19.85,v2
+Feeding + Growth,Community CV,,Community,7.8515,v2
+Feeding + Growth,Mean FG CV,,Community,34.23638,v2
+Feeding + Growth,Mean P:B,NA,Community,0.244852615,v2
+Feeding + Growth,Biomass (g m3),Active,Func Group,0.000700616,v20
+Feeding + Growth,Biomass (g m3),Inactive,Func Group,0.001714266,v20
+Feeding + Growth,Biomass (g m3),Fish,Func Group,0.033265141,v20
+Feeding + Growth,Biomass (g m3),Zoo,Func Group,0.035346542,v20
+Feeding + Growth,Total Biomass (g m3),,Community,0.071026564,v20
+Feeding + Growth,P:B,Active,Func Group,0.13787873,v20
+Feeding + Growth,P:B,Inactive,Func Group,0.11709536,v20
+Feeding + Growth,P:B,Fish,Func Group,0.07888245,v20
+Feeding + Growth,P:B,Zoo,Func Group,0.64270516,v20
+Feeding + Growth,CV,Active,Func Group,55.2882,v20
+Feeding + Growth,CV,Inactive,Func Group,54.919,v20
+Feeding + Growth,CV,Fish,Func Group,5.43804,v20
+Feeding + Growth,CV,Zoo,Func Group,19.7613,v20
+Feeding + Growth,Community CV,,Community,7.91997,v20
+Feeding + Growth,Mean FG CV,,Community,33.851635,v20
+Feeding + Growth,Mean P:B,NA,Community,0.244140425,v20
+Feeding + Growth,Biomass (g m3),Active,Func Group,0.000696875,v21
+Feeding + Growth,Biomass (g m3),Inactive,Func Group,0.002425181,v21
+Feeding + Growth,Biomass (g m3),Fish,Func Group,0.033125407,v21
+Feeding + Growth,Biomass (g m3),Zoo,Func Group,0.035197475,v21
+Feeding + Growth,Total Biomass (g m3),,Community,0.071444937,v21
+Feeding + Growth,P:B,Active,Func Group,0.13682379,v21
+Feeding + Growth,P:B,Inactive,Func Group,0.09641911,v21
+Feeding + Growth,P:B,Fish,Func Group,0.07904126,v21
+Feeding + Growth,P:B,Zoo,Func Group,0.64498105,v21
+Feeding + Growth,CV,Active,Func Group,54.8959,v21
+Feeding + Growth,CV,Inactive,Func Group,36.7865,v21
+Feeding + Growth,CV,Fish,Func Group,5.36932,v21
+Feeding + Growth,CV,Zoo,Func Group,19.333,v21
+Feeding + Growth,Community CV,,Community,7.67909,v21
+Feeding + Growth,Mean FG CV,,Community,29.09618,v21
+Feeding + Growth,Mean P:B,NA,Community,0.239316303,v21
+Feeding + Growth,Biomass (g m3),Active,Func Group,0.00078638,v22
+Feeding + Growth,Biomass (g m3),Inactive,Func Group,0.001245781,v22
+Feeding + Growth,Biomass (g m3),Fish,Func Group,0.033487522,v22
+Feeding + Growth,Biomass (g m3),Zoo,Func Group,0.035432265,v22
+Feeding + Growth,Total Biomass (g m3),,Community,0.070951948,v22
+Feeding + Growth,P:B,Active,Func Group,0.12948396,v22
+Feeding + Growth,P:B,Inactive,Func Group,0.13158288,v22
+Feeding + Growth,P:B,Fish,Func Group,0.07899396,v22
+Feeding + Growth,P:B,Zoo,Func Group,0.64123141,v22
+Feeding + Growth,CV,Active,Func Group,44.0918,v22
+Feeding + Growth,CV,Inactive,Func Group,69.8969,v22
+Feeding + Growth,CV,Fish,Func Group,5.60595,v22
+Feeding + Growth,CV,Zoo,Func Group,20.1056,v22
+Feeding + Growth,Community CV,,Community,8.06574,v22
+Feeding + Growth,Mean FG CV,,Community,34.9250625,v22
+Feeding + Growth,Mean P:B,NA,Community,0.245323053,v22
+Feeding + Growth,Biomass (g m3),Active,Func Group,0.000782635,v23
+Feeding + Growth,Biomass (g m3),Inactive,Func Group,0.00170644,v23
+Feeding + Growth,Biomass (g m3),Fish,Func Group,0.03339056,v23
+Feeding + Growth,Biomass (g m3),Zoo,Func Group,0.035333041,v23
+Feeding + Growth,Total Biomass (g m3),,Community,0.071212677,v23
+Feeding + Growth,P:B,Active,Func Group,0.12840947,v23
+Feeding + Growth,P:B,Inactive,Func Group,0.1158155,v23
+Feeding + Growth,P:B,Fish,Func Group,0.07892593,v23
+Feeding + Growth,P:B,Zoo,Func Group,0.6414386,v23
+Feeding + Growth,CV,Active,Func Group,43.1785,v23
+Feeding + Growth,CV,Inactive,Func Group,54.7956,v23
+Feeding + Growth,CV,Fish,Func Group,5.58708,v23
+Feeding + Growth,CV,Zoo,Func Group,20.2274,v23
+Feeding + Growth,Community CV,,Community,8.11829,v23
+Feeding + Growth,Mean FG CV,,Community,30.947145,v23
+Feeding + Growth,Mean P:B,NA,Community,0.241147375,v23
+Feeding + Growth,Biomass (g m3),Active,Func Group,0.000773453,v24
+Feeding + Growth,Biomass (g m3),Inactive,Func Group,0.002424311,v24
+Feeding + Growth,Biomass (g m3),Fish,Func Group,0.033256912,v24
+Feeding + Growth,Biomass (g m3),Zoo,Func Group,0.035206446,v24
+Feeding + Growth,Total Biomass (g m3),,Community,0.071661122,v24
+Feeding + Growth,P:B,Active,Func Group,0.12747787,v24
+Feeding + Growth,P:B,Inactive,Func Group,0.09549284,v24
+Feeding + Growth,P:B,Fish,Func Group,0.0790433,v24
+Feeding + Growth,P:B,Zoo,Func Group,0.6445299,v24
+Feeding + Growth,CV,Active,Func Group,43.0652,v24
+Feeding + Growth,CV,Inactive,Func Group,36.7155,v24
+Feeding + Growth,CV,Fish,Func Group,5.48058,v24
+Feeding + Growth,CV,Zoo,Func Group,19.7576,v24
+Feeding + Growth,Community CV,,Community,7.85701,v24
+Feeding + Growth,Mean FG CV,,Community,26.25472,v24
+Feeding + Growth,Mean P:B,NA,Community,0.236635978,v24
+Feeding + Growth,Biomass (g m3),Active,Func Group,0.000873146,v25
+Feeding + Growth,Biomass (g m3),Inactive,Func Group,0.001234132,v25
+Feeding + Growth,Biomass (g m3),Fish,Func Group,0.033491146,v25
+Feeding + Growth,Biomass (g m3),Zoo,Func Group,0.035410128,v25
+Feeding + Growth,Total Biomass (g m3),,Community,0.071008552,v25
+Feeding + Growth,P:B,Active,Func Group,0.12146382,v25
+Feeding + Growth,P:B,Inactive,Func Group,0.13071489,v25
+Feeding + Growth,P:B,Fish,Func Group,0.07906886,v25
+Feeding + Growth,P:B,Zoo,Func Group,0.64162679,v25
+Feeding + Growth,CV,Active,Func Group,36.9923,v25
+Feeding + Growth,CV,Inactive,Func Group,69.6887,v25
+Feeding + Growth,CV,Fish,Func Group,5.61819,v25
+Feeding + Growth,CV,Zoo,Func Group,20.3106,v25
+Feeding + Growth,Community CV,,Community,8.18145,v25
+Feeding + Growth,Mean FG CV,,Community,33.1524475,v25
+Feeding + Growth,Mean P:B,NA,Community,0.24321859,v25
+Feeding + Growth,Biomass (g m3),Active,Func Group,0.000865204,v26
+Feeding + Growth,Biomass (g m3),Inactive,Func Group,0.001685733,v26
+Feeding + Growth,Biomass (g m3),Fish,Func Group,0.033415695,v26
+Feeding + Growth,Biomass (g m3),Zoo,Func Group,0.035280858,v26
+Feeding + Growth,Total Biomass (g m3),,Community,0.071247489,v26
+Feeding + Growth,P:B,Active,Func Group,0.12084311,v26
+Feeding + Growth,P:B,Inactive,Func Group,0.11528467,v26
+Feeding + Growth,P:B,Fish,Func Group,0.07904099,v26
+Feeding + Growth,P:B,Zoo,Func Group,0.64171468,v26
+Feeding + Growth,CV,Active,Func Group,37.0408,v26
+Feeding + Growth,CV,Inactive,Func Group,55.0525,v26
+Feeding + Growth,CV,Fish,Func Group,5.73872,v26
+Feeding + Growth,CV,Zoo,Func Group,20.3328,v26
+Feeding + Growth,Community CV,,Community,8.15393,v26
+Feeding + Growth,Mean FG CV,,Community,29.541205,v26
+Feeding + Growth,Mean P:B,NA,Community,0.239220863,v26
+Feeding + Growth,Biomass (g m3),Active,Func Group,0.000851333,v27
+Feeding + Growth,Biomass (g m3),Inactive,Func Group,0.002391179,v27
+Feeding + Growth,Biomass (g m3),Fish,Func Group,0.033272432,v27
+Feeding + Growth,Biomass (g m3),Zoo,Func Group,0.035163345,v27
+Feeding + Growth,Total Biomass (g m3),,Community,0.071678289,v27
+Feeding + Growth,P:B,Active,Func Group,0.1200061,v27
+Feeding + Growth,P:B,Inactive,Func Group,0.09496443,v27
+Feeding + Growth,P:B,Fish,Func Group,0.07909201,v27
+Feeding + Growth,P:B,Zoo,Func Group,0.64410285,v27
+Feeding + Growth,CV,Active,Func Group,36.5094,v27
+Feeding + Growth,CV,Inactive,Func Group,36.6591,v27
+Feeding + Growth,CV,Fish,Func Group,5.5361,v27
+Feeding + Growth,CV,Zoo,Func Group,19.7844,v27
+Feeding + Growth,Community CV,,Community,7.85087,v27
+Feeding + Growth,Mean FG CV,,Community,24.62225,v27
+Feeding + Growth,Mean P:B,NA,Community,0.234541348,v27
+Feeding + Growth,Biomass (g m3),Active,Func Group,0.000854374,v3
+Feeding + Growth,Biomass (g m3),Inactive,Func Group,0.002680285,v3
+Feeding + Growth,Biomass (g m3),Fish,Func Group,0.033017258,v3
+Feeding + Growth,Biomass (g m3),Zoo,Func Group,0.034958456,v3
+Feeding + Growth,Total Biomass (g m3),,Community,0.071510372,v3
+Feeding + Growth,P:B,Active,Func Group,0.13579328,v3
+Feeding + Growth,P:B,Inactive,Func Group,0.09814195,v3
+Feeding + Growth,P:B,Fish,Func Group,0.0792055,v3
+Feeding + Growth,P:B,Zoo,Func Group,0.64695647,v3
+Feeding + Growth,CV,Active,Func Group,53.2406,v3
+Feeding + Growth,CV,Inactive,Func Group,38.235,v3
+Feeding + Growth,CV,Fish,Func Group,5.29975,v3
+Feeding + Growth,CV,Zoo,Func Group,19.2029,v3
+Feeding + Growth,Community CV,,Community,7.50139,v3
+Feeding + Growth,Mean FG CV,,Community,28.9945625,v3
+Feeding + Growth,Mean P:B,NA,Community,0.2400243,v3
+Feeding + Growth,Biomass (g m3),Active,Func Group,0.000962815,v4
+Feeding + Growth,Biomass (g m3),Inactive,Func Group,0.001394969,v4
+Feeding + Growth,Biomass (g m3),Fish,Func Group,0.03342461,v4
+Feeding + Growth,Biomass (g m3),Zoo,Func Group,0.035371668,v4
+Feeding + Growth,Total Biomass (g m3),,Community,0.071154061,v4
+Feeding + Growth,P:B,Active,Func Group,0.12851783,v4
+Feeding + Growth,P:B,Inactive,Func Group,0.13174242,v4
+Feeding + Growth,P:B,Fish,Func Group,0.07900185,v4
+Feeding + Growth,P:B,Zoo,Func Group,0.64165574,v4
+Feeding + Growth,CV,Active,Func Group,43.2713,v4
+Feeding + Growth,CV,Inactive,Func Group,70.6516,v4
+Feeding + Growth,CV,Fish,Func Group,5.68645,v4
+Feeding + Growth,CV,Zoo,Func Group,20.4495,v4
+Feeding + Growth,Community CV,,Community,8.17197,v4
+Feeding + Growth,Mean FG CV,,Community,35.0147125,v4
+Feeding + Growth,Mean P:B,NA,Community,0.24522946,v4
+Feeding + Growth,Biomass (g m3),Active,Func Group,0.000957437,v5
+Feeding + Growth,Biomass (g m3),Inactive,Func Group,0.001908631,v5
+Feeding + Growth,Biomass (g m3),Fish,Func Group,0.033309891,v5
+Feeding + Growth,Biomass (g m3),Zoo,Func Group,0.035214679,v5
+Feeding + Growth,Total Biomass (g m3),,Community,0.071390638,v5
+Feeding + Growth,P:B,Active,Func Group,0.1271963,v5
+Feeding + Growth,P:B,Inactive,Func Group,0.1165482,v5
+Feeding + Growth,P:B,Fish,Func Group,0.0789719,v5
+Feeding + Growth,P:B,Zoo,Func Group,0.6440718,v5
+Feeding + Growth,CV,Active,Func Group,42.2994,v5
+Feeding + Growth,CV,Inactive,Func Group,55.7574,v5
+Feeding + Growth,CV,Fish,Func Group,5.46023,v5
+Feeding + Growth,CV,Zoo,Func Group,20.2032,v5
+Feeding + Growth,Community CV,,Community,8.04137,v5
+Feeding + Growth,Mean FG CV,,Community,30.9300575,v5
+Feeding + Growth,Mean P:B,NA,Community,0.24169705,v5
+Feeding + Growth,Biomass (g m3),Active,Func Group,0.00094425,v6
+Feeding + Growth,Biomass (g m3),Inactive,Func Group,0.002721455,v6
+Feeding + Growth,Biomass (g m3),Fish,Func Group,0.03316244,v6
+Feeding + Growth,Biomass (g m3),Zoo,Func Group,0.035006001,v6
+Feeding + Growth,Total Biomass (g m3),,Community,0.071834146,v6
+Feeding + Growth,P:B,Active,Func Group,0.12624901,v6
+Feeding + Growth,P:B,Inactive,Func Group,0.09690541,v6
+Feeding + Growth,P:B,Fish,Func Group,0.0791433,v6
+Feeding + Growth,P:B,Zoo,Func Group,0.64715649,v6
+Feeding + Growth,CV,Active,Func Group,41.7119,v6
+Feeding + Growth,CV,Inactive,Func Group,38.1837,v6
+Feeding + Growth,CV,Fish,Func Group,5.3625,v6
+Feeding + Growth,CV,Zoo,Func Group,19.4803,v6
+Feeding + Growth,Community CV,,Community,7.65238,v6
+Feeding + Growth,Mean FG CV,,Community,26.1846,v6
+Feeding + Growth,Mean P:B,NA,Community,0.237363553,v6
+Feeding + Growth,Biomass (g m3),Active,Func Group,0.001069036,v7
+Feeding + Growth,Biomass (g m3),Inactive,Func Group,0.001389491,v7
+Feeding + Growth,Biomass (g m3),Fish,Func Group,0.033402599,v7
+Feeding + Growth,Biomass (g m3),Zoo,Func Group,0.035308962,v7
+Feeding + Growth,Total Biomass (g m3),,Community,0.071170088,v7
+Feeding + Growth,P:B,Active,Func Group,0.12055675,v7
+Feeding + Growth,P:B,Inactive,Func Group,0.1306292,v7
+Feeding + Growth,P:B,Fish,Func Group,0.07911745,v7
+Feeding + Growth,P:B,Zoo,Func Group,0.64193099,v7
+Feeding + Growth,CV,Active,Func Group,36.4417,v7
+Feeding + Growth,CV,Inactive,Func Group,70.2049,v7
+Feeding + Growth,CV,Fish,Func Group,5.65867,v7
+Feeding + Growth,CV,Zoo,Func Group,20.5245,v7
+Feeding + Growth,Community CV,,Community,8.20251,v7
+Feeding + Growth,Mean FG CV,,Community,33.2074425,v7
+Feeding + Growth,Mean P:B,NA,Community,0.243058598,v7
+Feeding + Growth,Biomass (g m3),Active,Func Group,0.001058521,v8
+Feeding + Growth,Biomass (g m3),Inactive,Func Group,0.001894573,v8
+Feeding + Growth,Biomass (g m3),Fish,Func Group,0.033312341,v8
+Feeding + Growth,Biomass (g m3),Zoo,Func Group,0.03516733,v8
+Feeding + Growth,Total Biomass (g m3),,Community,0.071432765,v8
+Feeding + Growth,P:B,Active,Func Group,0.11953523,v8
+Feeding + Growth,P:B,Inactive,Func Group,0.11563278,v8
+Feeding + Growth,P:B,Fish,Func Group,0.07904662,v8
+Feeding + Growth,P:B,Zoo,Func Group,0.64312819,v8
+Feeding + Growth,CV,Active,Func Group,35.8103,v8
+Feeding + Growth,CV,Inactive,Func Group,55.441,v8
+Feeding + Growth,CV,Fish,Func Group,5.61665,v8
+Feeding + Growth,CV,Zoo,Func Group,20.3417,v8
+Feeding + Growth,Community CV,,Community,8.08975,v8
+Feeding + Growth,Mean FG CV,,Community,29.3024125,v8
+Feeding + Growth,Mean P:B,NA,Community,0.239335705,v8
+Feeding + Growth,Biomass (g m3),Active,Func Group,0.001038133,v9
+Feeding + Growth,Biomass (g m3),Inactive,Func Group,0.002697883,v9
+Feeding + Growth,Biomass (g m3),Fish,Func Group,0.033161026,v9
+Feeding + Growth,Biomass (g m3),Zoo,Func Group,0.034997123,v9
+Feeding + Growth,Total Biomass (g m3),,Community,0.071894165,v9
+Feeding + Growth,P:B,Active,Func Group,0.11890076,v9
+Feeding + Growth,P:B,Inactive,Func Group,0.09618175,v9
+Feeding + Growth,P:B,Fish,Func Group,0.07914778,v9
+Feeding + Growth,P:B,Zoo,Func Group,0.6469497,v9
+Feeding + Growth,CV,Active,Func Group,35.3209,v9
+Feeding + Growth,CV,Inactive,Func Group,37.95,v9
+Feeding + Growth,CV,Fish,Func Group,5.37425,v9
+Feeding + Growth,CV,Zoo,Func Group,19.5724,v9
+Feeding + Growth,Community CV,,Community,7.71342,v9
+Feeding + Growth,Mean FG CV,,Community,24.5543875,v9
+Feeding + Growth,Mean P:B,NA,Community,0.235294998,v9
+Control,Production,Active,Func Group,0.000493799,v1
+Control,Production,Inactive,Func Group,0.000493799,v1
+Control,Production,Fish,Func Group,0.002177794,v1
+Control,Production,Zoo,Func Group,0.02455726,v1
+Control,Production,Active,Func Group,0.000445312,v2
+Control,Production,Inactive,Func Group,0.000445312,v2
+Control,Production,Fish,Func Group,0.002183693,v2
+Control,Production,Zoo,Func Group,0.02441436,v2
+Control,Production,Active,Func Group,0.00039719,v3
+Control,Production,Inactive,Func Group,0.00039719,v3
+Control,Production,Fish,Func Group,0.002190534,v3
+Control,Production,Zoo,Func Group,0.024239998,v3
+Feeding + Growth,Production,Active,Func Group,0.000118705,v1
+Feeding + Growth,Production,Inactive,Func Group,0.000184849,v1
+Feeding + Growth,Production,Fish,Func Group,0.002629917,v1
+Feeding + Growth,Production,Zoo,Func Group,0.02275206,v1
+Feeding + Growth,Production,Active,Func Group,0.000108194,v10
+Feeding + Growth,Production,Inactive,Func Group,0.000176367,v10
+Feeding + Growth,Production,Fish,Func Group,0.002630701,v10
+Feeding + Growth,Production,Zoo,Func Group,0.022742678,v10
+Feeding + Growth,Production,Active,Func Group,0.000107321,v11
+Feeding + Growth,Production,Inactive,Func Group,0.00021302,v11
+Feeding + Growth,Production,Fish,Func Group,0.002623446,v11
+Feeding + Growth,Production,Zoo,Func Group,0.022714697,v11
+Feeding + Growth,Production,Active,Func Group,0.000105769,v12
+Feeding + Growth,Production,Inactive,Func Group,0.000249289,v12
+Feeding + Growth,Production,Fish,Func Group,0.00261775,v12
+Feeding + Growth,Production,Zoo,Func Group,0.022667453,v12
+Feeding + Growth,Production,Active,Func Group,0.000112857,v13
+Feeding + Growth,Production,Inactive,Func Group,0.000174178,v13
+Feeding + Growth,Production,Fish,Func Group,0.002640916,v13
+Feeding + Growth,Production,Zoo,Func Group,0.022706674,v13
+Feeding + Growth,Production,Active,Func Group,0.000111235,v14
+Feeding + Growth,Production,Inactive,Func Group,0.000210723,v14
+Feeding + Growth,Production,Fish,Func Group,0.002633613,v14
+Feeding + Growth,Production,Zoo,Func Group,0.022674479,v14
+Feeding + Growth,Production,Active,Func Group,0.000109003,v15
+Feeding + Growth,Production,Inactive,Func Group,0.000248235,v15
+Feeding + Growth,Production,Fish,Func Group,0.002626566,v15
+Feeding + Growth,Production,Zoo,Func Group,0.022691724,v15
+Feeding + Growth,Production,Active,Func Group,0.000117485,v16
+Feeding + Growth,Production,Inactive,Func Group,0.000171802,v16
+Feeding + Growth,Production,Fish,Func Group,0.002644636,v16
+Feeding + Growth,Production,Zoo,Func Group,0.022681,v16
+Feeding + Growth,Production,Active,Func Group,0.000115572,v17
+Feeding + Growth,Production,Inactive,Func Group,0.000206937,v17
+Feeding + Growth,Production,Fish,Func Group,0.002634757,v17
+Feeding + Growth,Production,Zoo,Func Group,0.022636472,v17
+Feeding + Growth,Production,Active,Func Group,0.000112937,v18
+Feeding + Growth,Production,Inactive,Func Group,0.00024407,v18
+Feeding + Growth,Production,Fish,Func Group,0.002626839,v18
+Feeding + Growth,Production,Zoo,Func Group,0.022653562,v18
+Feeding + Growth,Production,Active,Func Group,9.7484E-05,v19
+Feeding + Growth,Production,Inactive,Func Group,0.000166684,v19
+Feeding + Growth,Production,Fish,Func Group,0.002633502,v19
+Feeding + Growth,Production,Zoo,Func Group,0.022737815,v19
+Feeding + Growth,Production,Active,Func Group,0.000117872,v2
+Feeding + Growth,Production,Inactive,Func Group,0.00022385,v2
+Feeding + Growth,Production,Fish,Func Group,0.002624718,v2
+Feeding + Growth,Production,Zoo,Func Group,0.022676405,v2
+Feeding + Growth,Production,Active,Func Group,9.66E-05,v20
+Feeding + Growth,Production,Inactive,Func Group,0.000200733,v20
+Feeding + Growth,Production,Fish,Func Group,0.002624036,v20
+Feeding + Growth,Production,Zoo,Func Group,0.022717405,v20
+Feeding + Growth,Production,Active,Func Group,9.5349E-05,v21
+Feeding + Growth,Production,Inactive,Func Group,0.000233834,v21
+Feeding + Growth,Production,Fish,Func Group,0.002618274,v21
+Feeding + Growth,Production,Zoo,Func Group,0.022701705,v21
+Feeding + Growth,Production,Active,Func Group,0.000101824,v22
+Feeding + Growth,Production,Inactive,Func Group,0.000163923,v22
+Feeding + Growth,Production,Fish,Func Group,0.002645312,v22
+Feeding + Growth,Production,Zoo,Func Group,0.022720281,v22
+Feeding + Growth,Production,Active,Func Group,0.000100498,v23
+Feeding + Growth,Production,Inactive,Func Group,0.000197632,v23
+Feeding + Growth,Production,Fish,Func Group,0.002635381,v23
+Feeding + Growth,Production,Zoo,Func Group,0.022663976,v23
+Feeding + Growth,Production,Active,Func Group,9.85981E-05,v24
+Feeding + Growth,Production,Inactive,Func Group,0.000231504,v24
+Feeding + Growth,Production,Fish,Func Group,0.002628736,v24
+Feeding + Growth,Production,Zoo,Func Group,0.022691607,v24
+Feeding + Growth,Production,Active,Func Group,0.000106056,v25
+Feeding + Growth,Production,Inactive,Func Group,0.000161319,v25
+Feeding + Growth,Production,Fish,Func Group,0.002648107,v25
+Feeding + Growth,Production,Zoo,Func Group,0.022720087,v25
+Feeding + Growth,Production,Active,Func Group,0.000104554,v26
+Feeding + Growth,Production,Inactive,Func Group,0.000194339,v26
+Feeding + Growth,Production,Fish,Func Group,0.00264121,v26
+Feeding + Growth,Production,Zoo,Func Group,0.022640244,v26
+Feeding + Growth,Production,Active,Func Group,0.000102165,v27
+Feeding + Growth,Production,Inactive,Func Group,0.000227077,v27
+Feeding + Growth,Production,Fish,Func Group,0.002631584,v27
+Feeding + Growth,Production,Zoo,Func Group,0.022648811,v27
+Feeding + Growth,Production,Active,Func Group,0.000116018,v3
+Feeding + Growth,Production,Inactive,Func Group,0.000263048,v3
+Feeding + Growth,Production,Fish,Func Group,0.002615148,v3
+Feeding + Growth,Production,Zoo,Func Group,0.022616599,v3
+Feeding + Growth,Production,Active,Func Group,0.000123739,v4
+Feeding + Growth,Production,Inactive,Func Group,0.000183777,v4
+Feeding + Growth,Production,Fish,Func Group,0.002640606,v4
+Feeding + Growth,Production,Zoo,Func Group,0.022696434,v4
+Feeding + Growth,Production,Active,Func Group,0.000121782,v5
+Feeding + Growth,Production,Inactive,Func Group,0.000222448,v5
+Feeding + Growth,Production,Fish,Func Group,0.002630545,v5
+Feeding + Growth,Production,Zoo,Func Group,0.022680782,v5
+Feeding + Growth,Production,Active,Func Group,0.000119211,v6
+Feeding + Growth,Production,Inactive,Func Group,0.000263724,v6
+Feeding + Growth,Production,Fish,Func Group,0.002624585,v6
+Feeding + Growth,Production,Zoo,Func Group,0.022654361,v6
+Feeding + Growth,Production,Active,Func Group,0.00012888,v7
+Feeding + Growth,Production,Inactive,Func Group,0.000181508,v7
+Feeding + Growth,Production,Fish,Func Group,0.002642728,v7
+Feeding + Growth,Production,Zoo,Func Group,0.022665917,v7
+Feeding + Growth,Production,Active,Func Group,0.000126531,v8
+Feeding + Growth,Production,Inactive,Func Group,0.000219075,v8
+Feeding + Growth,Production,Fish,Func Group,0.002633228,v8
+Feeding + Growth,Production,Zoo,Func Group,0.022617101,v8
+Feeding + Growth,Production,Active,Func Group,0.000123435,v9
+Feeding + Growth,Production,Inactive,Func Group,0.000259487,v9
+Feeding + Growth,Production,Fish,Func Group,0.002624622,v9
+Feeding + Growth,Production,Zoo,Func Group,0.022641378,v9
+Feeding + Growth,Production,NA,Community,0.02568553,v1
+Feeding + Growth,Production,NA,Community,0.02565794,v10
+Feeding + Growth,Production,NA,Community,0.025658484,v11
+Feeding + Growth,Production,NA,Community,0.025640262,v12
+Feeding + Growth,Production,NA,Community,0.025634624,v13
+Feeding + Growth,Production,NA,Community,0.025630051,v14
+Feeding + Growth,Production,NA,Community,0.025675528,v15
+Feeding + Growth,Production,NA,Community,0.025614923,v16
+Feeding + Growth,Production,NA,Community,0.025593738,v17
+Feeding + Growth,Production,NA,Community,0.025637409,v18
+Feeding + Growth,Production,NA,Community,0.025635485,v19
+Feeding + Growth,Production,NA,Community,0.025642845,v2
+Feeding + Growth,Production,NA,Community,0.025638773,v20
+Feeding + Growth,Production,NA,Community,0.025649161,v21
+Feeding + Growth,Production,NA,Community,0.02563134,v22
+Feeding + Growth,Production,NA,Community,0.025597487,v23
+Feeding + Growth,Production,NA,Community,0.025650446,v24
+Feeding + Growth,Production,NA,Community,0.025635569,v25
+Feeding + Growth,Production,NA,Community,0.025580347,v26
+Feeding + Growth,Production,NA,Community,0.025609636,v27
+Feeding + Growth,Production,NA,Community,0.025610814,v3
+Feeding + Growth,Production,NA,Community,0.025644555,v4
+Feeding + Growth,Production,NA,Community,0.025655557,v5
+Feeding + Growth,Production,NA,Community,0.02566188,v6
+Feeding + Growth,Production,NA,Community,0.025619033,v7
+Feeding + Growth,Production,NA,Community,0.025595935,v8
+Feeding + Growth,Production,NA,Community,0.025648922,v9
+Control,Production,NA,Community,0.027722651,v1
+Control,Production,NA,Community,0.027488678,v2
+Control,Production,NA,Community,0.027224911,v3
+Feeding + Growth,Turnover_Time,NA,Community,4.025598945,v1
+Feeding + Growth,Turnover_Time,NA,Community,4.028095523,v10
+Feeding + Growth,Turnover_Time,NA,Community,4.089647277,v11
+Feeding + Growth,Turnover_Time,NA,Community,4.171641523,v12
+Feeding + Growth,Turnover_Time,NA,Community,4.079117336,v13
+Feeding + Growth,Turnover_Time,NA,Community,4.140691248,v14
+Feeding + Growth,Turnover_Time,NA,Community,4.217874475,v15
+Feeding + Growth,Turnover_Time,NA,Community,4.114157207,v16
+Feeding + Growth,Turnover_Time,NA,Community,4.180600303,v17
+Feeding + Growth,Turnover_Time,NA,Community,4.257455848,v18
+Feeding + Growth,Turnover_Time,NA,Community,4.030832929,v19
+Feeding + Growth,Turnover_Time,NA,Community,4.084089525,v2
+Feeding + Growth,Turnover_Time,NA,Community,4.096003355,v20
+Feeding + Growth,Turnover_Time,NA,Community,4.178570325,v21
+Feeding + Growth,Turnover_Time,NA,Community,4.076257774,v22
+Feeding + Growth,Turnover_Time,NA,Community,4.146841739,v23
+Feeding + Growth,Turnover_Time,NA,Community,4.225900096,v24
+Feeding + Growth,Turnover_Time,NA,Community,4.111527824,v25
+Feeding + Growth,Turnover_Time,NA,Community,4.180237416,v26
+Feeding + Growth,Turnover_Time,NA,Community,4.263640551,v27
+Feeding + Growth,Turnover_Time,NA,Community,4.166244834,v3
+Feeding + Growth,Turnover_Time,NA,Community,4.077813489,v4
+Feeding + Growth,Turnover_Time,NA,Community,4.137410862,v5
+Feeding + Growth,Turnover_Time,NA,Community,4.21294672,v6
+Feeding + Growth,Turnover_Time,NA,Community,4.114234223,v7
+Feeding + Growth,Turnover_Time,NA,Community,4.178231576,v8
+Feeding + Growth,Turnover_Time,NA,Community,4.249984108,v9
+Control,Turnover_Time,NA,Community,4.679494847,v1
+Control,Turnover_Time,NA,Community,4.682579195,v2
+Control,Turnover_Time,NA,Community,4.688425085,v3
+Control,Turnover_Time,Active,Func Group,12.43807394,v1
+Control,Turnover_Time,Inactive,Func Group,12.43807394,v1
+Control,Turnover_Time,Fish,Func Group,11.49515927,v1
+Control,Turnover_Time,Zoo,Func Group,1.647437284,v1
+Control,Turnover_Time,Active,Func Group,12.73422538,v2
+Control,Turnover_Time,Inactive,Func Group,12.73422538,v2
+Control,Turnover_Time,Fish,Func Group,11.62554267,v2
+Control,Turnover_Time,Zoo,Func Group,1.636244705,v2
+Control,Turnover_Time,Active,Func Group,13.04667526,v3
+Control,Turnover_Time,Inactive,Func Group,13.04667526,v3
+Control,Turnover_Time,Fish,Func Group,11.76857013,v3
+Control,Turnover_Time,Zoo,Func Group,1.62628834,v3
+Feeding + Growth,Turnover_Time,Active,Func Group,7.234421668,v1
+Feeding + Growth,Turnover_Time,Inactive,Func Group,7.490471184,v1
+Feeding + Growth,Turnover_Time,Fish,Func Group,12.65887201,v1
+Feeding + Growth,Turnover_Time,Zoo,Func Group,1.555418036,v1
+Feeding + Growth,Turnover_Time,Active,Func Group,7.210635572,v10
+Feeding + Growth,Turnover_Time,Inactive,Func Group,7.505876726,v10
+Feeding + Growth,Turnover_Time,Fish,Func Group,12.66714937,v10
+Feeding + Growth,Turnover_Time,Zoo,Func Group,1.557225434,v10
+Feeding + Growth,Turnover_Time,Active,Func Group,7.267758769,v11
+Feeding + Growth,Turnover_Time,Inactive,Func Group,8.486808063,v11
+Feeding + Growth,Turnover_Time,Fish,Func Group,12.66449276,v11
+Feeding + Growth,Turnover_Time,Zoo,Func Group,1.553531728,v11
+Feeding + Growth,Turnover_Time,Active,Func Group,7.332937355,v12
+Feeding + Growth,Turnover_Time,Inactive,Func Group,10.27890683,v12
+Feeding + Growth,Turnover_Time,Fish,Func Group,12.6349747,v12
+Feeding + Growth,Turnover_Time,Zoo,Func Group,1.547862637,v12
+Feeding + Growth,Turnover_Time,Active,Func Group,7.759421917,v13
+Feeding + Growth,Turnover_Time,Inactive,Func Group,7.60684537,v13
+Feeding + Growth,Turnover_Time,Fish,Func Group,12.65981113,v13
+Feeding + Growth,Turnover_Time,Zoo,Func Group,1.559385955,v13
+Feeding + Growth,Turnover_Time,Active,Func Group,7.820315428,v14
+Feeding + Growth,Turnover_Time,Inactive,Func Group,8.604157804,v14
+Feeding + Growth,Turnover_Time,Fish,Func Group,12.66583697,v14
+Feeding + Growth,Turnover_Time,Zoo,Func Group,1.555270955,v14
+Feeding + Growth,Turnover_Time,Active,Func Group,7.880429922,v15
+Feeding + Growth,Turnover_Time,Inactive,Func Group,10.39867155,v15
+Feeding + Growth,Turnover_Time,Fish,Func Group,12.64296027,v15
+Feeding + Growth,Turnover_Time,Zoo,Func Group,1.547540123,v15
+Feeding + Growth,Turnover_Time,Active,Func Group,8.265265429,v16
+Feeding + Growth,Turnover_Time,Inactive,Func Group,7.657607538,v16
+Feeding + Growth,Turnover_Time,Fish,Func Group,12.64331833,v16
+Feeding + Growth,Turnover_Time,Zoo,Func Group,1.558647,v16
+Feeding + Growth,Turnover_Time,Active,Func Group,8.33168366,v17
+Feeding + Growth,Turnover_Time,Inactive,Func Group,8.673898038,v17
+Feeding + Growth,Turnover_Time,Fish,Func Group,12.65643832,v17
+Feeding + Growth,Turnover_Time,Zoo,Func Group,1.556475855,v17
+Feeding + Growth,Turnover_Time,Active,Func Group,8.374057772,v18
+Feeding + Growth,Turnover_Time,Inactive,Func Group,10.46176231,v18
+Feeding + Growth,Turnover_Time,Fish,Func Group,12.64172799,v18
+Feeding + Growth,Turnover_Time,Zoo,Func Group,1.54937265,v18
+Feeding + Growth,Turnover_Time,Active,Func Group,7.186433107,v19
+Feeding + Growth,Turnover_Time,Inactive,Func Group,7.514506944,v19
+Feeding + Growth,Turnover_Time,Fish,Func Group,12.6693769,v19
+Feeding + Growth,Turnover_Time,Zoo,Func Group,1.559592262,v19
+Feeding + Growth,Turnover_Time,Active,Func Group,7.281368536,v2
+Feeding + Growth,Turnover_Time,Inactive,Func Group,8.433027175,v2
+Feeding + Growth,Turnover_Time,Fish,Func Group,12.64847411,v2
+Feeding + Growth,Turnover_Time,Zoo,Func Group,1.551755692,v2
+Feeding + Growth,Turnover_Time,Active,Func Group,7.252750297,v20
+Feeding + Growth,Turnover_Time,Inactive,Func Group,8.540048043,v20
+Feeding + Growth,Turnover_Time,Fish,Func Group,12.67709104,v20
+Feeding + Growth,Turnover_Time,Zoo,Func Group,1.555923404,v20
+Feeding + Growth,Turnover_Time,Active,Func Group,7.308670517,v21
+Feeding + Growth,Turnover_Time,Inactive,Func Group,10.371388,v21
+Feeding + Growth,Turnover_Time,Fish,Func Group,12.65162018,v21
+Feeding + Growth,Turnover_Time,Zoo,Func Group,1.550433148,v21
+Feeding + Growth,Turnover_Time,Active,Func Group,7.722964296,v22
+Feeding + Growth,Turnover_Time,Inactive,Func Group,7.599772858,v22
+Feeding + Growth,Turnover_Time,Fish,Func Group,12.65919572,v22
+Feeding + Growth,Turnover_Time,Zoo,Func Group,1.559499401,v22
+Feeding + Growth,Turnover_Time,Active,Func Group,7.787587629,v23
+Feeding + Growth,Turnover_Time,Inactive,Func Group,8.634422854,v23
+Feeding + Growth,Turnover_Time,Fish,Func Group,12.67010728,v23
+Feeding + Growth,Turnover_Time,Zoo,Func Group,1.55899567,v23
+Feeding + Growth,Turnover_Time,Active,Func Group,7.844498814,v24
+Feeding + Growth,Turnover_Time,Inactive,Func Group,10.47198931,v24
+Feeding + Growth,Turnover_Time,Fish,Func Group,12.65129366,v24
+Feeding + Growth,Turnover_Time,Zoo,Func Group,1.551518401,v24
+Feeding + Growth,Turnover_Time,Active,Func Group,8.232904251,v25
+Feeding + Growth,Turnover_Time,Inactive,Func Group,7.650237857,v25
+Feeding + Growth,Turnover_Time,Fish,Func Group,12.64720397,v25
+Feeding + Growth,Turnover_Time,Zoo,Func Group,1.558538415,v25
+Feeding + Growth,Turnover_Time,Active,Func Group,8.27519252,v26
+Feeding + Growth,Turnover_Time,Inactive,Func Group,8.674180184,v26
+Feeding + Growth,Turnover_Time,Fish,Func Group,12.6516634,v26
+Feeding + Growth,Turnover_Time,Zoo,Func Group,1.558324955,v26
+Feeding + Growth,Turnover_Time,Active,Func Group,8.332909744,v27
+Feeding + Growth,Turnover_Time,Inactive,Func Group,10.53025854,v27
+Feeding + Growth,Turnover_Time,Fish,Func Group,12.64350217,v27
+Feeding + Growth,Turnover_Time,Zoo,Func Group,1.552547082,v27
+Feeding + Growth,Turnover_Time,Active,Func Group,7.364134661,v3
+Feeding + Growth,Turnover_Time,Inactive,Func Group,10.18932271,v3
+Feeding + Growth,Turnover_Time,Fish,Func Group,12.62538586,v3
+Feeding + Growth,Turnover_Time,Zoo,Func Group,1.545699048,v3
+Feeding + Growth,Turnover_Time,Active,Func Group,7.781021513,v4
+Feeding + Growth,Turnover_Time,Inactive,Func Group,7.590569537,v4
+Feeding + Growth,Turnover_Time,Fish,Func Group,12.65793143,v4
+Feeding + Growth,Turnover_Time,Zoo,Func Group,1.558468097,v4
+Feeding + Growth,Turnover_Time,Active,Func Group,7.861863906,v5
+Feeding + Growth,Turnover_Time,Inactive,Func Group,8.580141092,v5
+Feeding + Growth,Turnover_Time,Fish,Func Group,12.66273193,v5
+Feeding + Growth,Turnover_Time,Zoo,Func Group,1.552621928,v5
+Feeding + Growth,Turnover_Time,Active,Func Group,7.920854191,v6
+Feeding + Growth,Turnover_Time,Inactive,Func Group,10.3193413,v6
+Feeding + Growth,Turnover_Time,Fish,Func Group,12.63530836,v6
+Feeding + Growth,Turnover_Time,Zoo,Func Group,1.545221311,v6
+Feeding + Growth,Turnover_Time,Active,Func Group,8.294848692,v7
+Feeding + Growth,Turnover_Time,Inactive,Func Group,7.655256252,v7
+Feeding + Growth,Turnover_Time,Fish,Func Group,12.63943669,v7
+Feeding + Growth,Turnover_Time,Zoo,Func Group,1.55779985,v7
+Feeding + Growth,Turnover_Time,Active,Func Group,8.36573452,v8
+Feeding + Growth,Turnover_Time,Inactive,Func Group,8.648066751,v8
+Feeding + Growth,Turnover_Time,Fish,Func Group,12.6507623,v8
+Feeding + Growth,Turnover_Time,Zoo,Func Group,1.554899965,v8
+Feeding + Growth,Turnover_Time,Active,Func Group,8.410375173,v9
+Feeding + Growth,Turnover_Time,Inactive,Func Group,10.3969828,v9
+Feeding + Growth,Turnover_Time,Fish,Func Group,12.63459316,v9
+Feeding + Growth,Turnover_Time,Zoo,Func Group,1.545715223,v9
+Control,1/Community_CV,,Community,0.081519524,v1
+Control,1/Community_CV,,Community,0.088681571,v2
+Control,1/Community_CV,,Community,0.097894294,v3
+Feeding + Growth,1/Community_CV,,Community,0.125647398,v1
+Feeding + Growth,1/Community_CV,,Community,0.125542501,v10
+Feeding + Growth,1/Community_CV,,Community,0.126419214,v11
+Feeding + Growth,1/Community_CV,,Community,0.131534468,v12
+Feeding + Growth,1/Community_CV,,Community,0.122320119,v13
+Feeding + Growth,1/Community_CV,,Community,0.124641189,v14
+Feeding + Growth,1/Community_CV,,Community,0.128600162,v15
+Feeding + Growth,1/Community_CV,,Community,0.122660105,v16
+Feeding + Growth,1/Community_CV,,Community,0.123054962,v17
+Feeding + Growth,1/Community_CV,,Community,0.127410609,v18
+Feeding + Growth,1/Community_CV,,Community,0.124995313,v19
+Feeding + Growth,1/Community_CV,,Community,0.127364198,v2
+Feeding + Growth,1/Community_CV,,Community,0.126263105,v20
+Feeding + Growth,1/Community_CV,,Community,0.130223763,v21
+Feeding + Growth,1/Community_CV,,Community,0.123981185,v22
+Feeding + Growth,1/Community_CV,,Community,0.12317865,v23
+Feeding + Growth,1/Community_CV,,Community,0.127274879,v24
+Feeding + Growth,1/Community_CV,,Community,0.122227722,v25
+Feeding + Growth,1/Community_CV,,Community,0.122640248,v26
+Feeding + Growth,1/Community_CV,,Community,0.127374418,v27
+Feeding + Growth,1/Community_CV,,Community,0.133308627,v3
+Feeding + Growth,1/Community_CV,,Community,0.122369514,v4
+Feeding + Growth,1/Community_CV,,Community,0.124356919,v5
+Feeding + Growth,1/Community_CV,,Community,0.130678299,v6
+Feeding + Growth,1/Community_CV,,Community,0.121913902,v7
+Feeding + Growth,1/Community_CV,,Community,0.123613214,v8
+Feeding + Growth,1/Community_CV,,Community,0.129644179,v9
