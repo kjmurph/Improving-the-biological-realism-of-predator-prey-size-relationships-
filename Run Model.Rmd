@@ -1,0 +1,98 @@
+---
+title: "Wrapper to run model"
+output: html_notebook
+---
+## Setup workspace
+```{r}
+library(tidyverse)
+library(reshape2)
+source("PZCeF Model.R")
+source("Functions BioLett.R")
+```
+
+```{r}
+
+# start_N <- read.csv("Simple_Model_No_Fishing_Start_N.csv")
+# start_Ab <- start_N[,-1]
+# start_Ab_Simple <- as.matrix(start_Ab)
+
+a <- Sys.time()
+param <- params(Control_Params, tmax =1000, -1.3, -0.88, -14.5, -7.9, f_mort = 0) # Set up parameters
+model <- Setup(param, restart = F, saved_N = start_N)
+# model <- Setup(param, restart = T)
+Control_Model_monthly_dt <- Project(model, fish_on = T)
+b <- Sys.time()
+b-a
+```
+
+
+## Control
+
+```{r}
+# # #Model v1
+# 
+# Model <- readRDS("Control_Sigma_Model.rds")
+# 
+# Control_Model_Abundance<-  Abundance_df(Model)
+# 
+# write.csv(Control_Model_Abundance, "Sigma_Constant_Model_Simulations/Dataframes/Abundance_df_Control_Model_v1.csv")
+# 
+# Control_Model_Biomass <-  Biomass_df(Model)
+# 
+# write.csv(Control_Model_Biomass, "Sigma_Constant_Model_Simulations/Dataframes/Biomass_df_Control_Model_v1.csv")
+# 
+# df_diet <- Total_Consumption
+# 
+# 
+# # Model v2
+# 
+# Model <- readRDS("Control_Sigma_Model_prop_v2.rds")
+# 
+# 
+# Control_Model_Abundance<-  Abundance_df(Model)
+# 
+# write.csv(Control_Model_Abundance, "Sigma_Constant_Model_Simulations/Dataframes/Abundance_df_Control_Model_v2.csv")
+# 
+# Control_Model_Biomass <-  Biomass_df(Model)
+# 
+# write.csv(Control_Model_Biomass, "Sigma_Constant_Model_Simulations/Dataframes/Biomass_df_Control_Model_v2.csv")
+# 
+# 
+# # Model v3
+# 
+# Model <- readRDS("Control_Sigma_Model_prop_v3.rds")
+# 
+# 
+# Control_Model_Abundance<-  Abundance_df(Model)
+# 
+# write.csv(Control_Model_Abundance, "Sigma_Constant_Model_Simulations/Dataframes/Abundance_df_Control_Model_v3.csv")
+# 
+# Control_Model_Biomass <-  Biomass_df(Model)
+# 
+# write.csv(Control_Model_Biomass, "Sigma_Constant_Model_Simulations/Dataframes/Biomass_df_Control_Model_v3.csv")
+```
+
+
+## Fedding + Growth
+
+```{r}
+# #Model v1
+# 
+# Model <-readRDS("Sigma_Constant_Model_Simulations/FG_Model_v1.rds")
+#
+# FG_Model_RTP <-  TL_Allom_Plot_Inde_Scaling_df(Model)
+# 
+# write.csv(FG_Model_RTP, "Sigma_Constant_Model_Simulations/Dataframes/Feeding Only/RTP_df_FG_Model_v1.csv")
+# 
+# FG_Model_Abundance<-  Abundance_df(Model)
+# 
+# write.csv(FG_Model_Abundance, "Sigma_Constant_Model_Simulations/Dataframes/Abundance_df_FG_Model_v1.csv")
+# 
+# FG_Model_Biomass <-  Biomass_df(Model)
+# 
+# write.csv(FG_Model_Biomass, "Sigma_Constant_Model_Simulations/Dataframes/Biomass_df_FG_Model_v1.csv")
+
+```
+
+
+
