@@ -1,4 +1,4 @@
-# Rule_Breakers
+# Diversity of predator-prey size relationships
 
 The markdown file `Figures for Biology Letters manuscript.Rmd` contains the code to reproduce figure 1 and 2, using compiled data extracted from the control model set and feeding + growth model sets.
 
